@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yn3-md-MB3">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--旅を始める-->
+        <scene sceneID="f0X-p3-FNN">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9yR-xq-8Ra" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController id="5Ol-s1-T4O" customClass="StartTripViewController" customModule="Tripom" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OD6-ku-znn">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="caC-in-b6l">
+                                <rect key="frame" x="159" y="406" width="76" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="START"/>
+                                <connections>
+                                    <action selector="tappedStartButton" destination="5Ol-s1-T4O" eventType="touchUpInside" id="xP7-7i-hsh"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LRK-fw-JO3">
+                                <rect key="frame" x="76" y="362" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="0gb-5f-Baj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="旅を始める" id="7Np-Rt-Iw4"/>
+                    <connections>
+                        <outlet property="rouletteView" destination="LRK-fw-JO3" id="9yo-05-m7k"/>
+                        <outlet property="startButton" destination="caC-in-b6l" id="Eb9-1q-H7R"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1851" y="4"/>
+        </scene>
+        <!--Roulette View Controller-->
+        <scene sceneID="pss-AD-R8a">
+            <objects>
+                <viewController storyboardIdentifier="RouletteViewController" id="rNh-mU-TSu" customClass="RouletteViewController" customModule="Tripom" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Y5O-SU-VUR">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="NF2-85-ljI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qcc-us-gJN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2569" y="-704"/>
+        </scene>
+        <!--旅条件-->
+        <scene sceneID="5fk-pt-wXe">
+            <objects>
+                <viewController id="b4f-tP-kct" customClass="TripRequirementsViewController" customModule="Tripom" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wGE-18-zGi">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="leH-Vr-4qD">
+                                <rect key="frame" x="97" y="616" width="199" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="この旅条件で旅を始める"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hhi-q4-4Xo">
+                                <rect key="frame" x="105" y="698" width="184" height="41"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="旅条件をリセットする"/>
+                                <connections>
+                                    <action selector="tappedResetButton" destination="b4f-tP-kct" eventType="touchUpInside" id="w3T-CT-uYL"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vGs-ph-59B"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="旅条件" id="4jB-MV-GNn"/>
+                    <connections>
+                        <outlet property="resetButton" destination="Hhi-q4-4Xo" id="yYY-Jn-zei"/>
+                        <outlet property="startButton" destination="leH-Vr-4qD" id="TaW-lZ-iEB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PxG-ek-ILU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2569" y="4"/>
+        </scene>
+        <!--プロフィール-->
+        <scene sceneID="1Gw-9e-dwv">
+            <objects>
+                <viewController id="8xp-6W-BeN" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="VLN-cH-xAM">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="WxC-Cg-HYa"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="プロフィール" image="person" catalog="system" selectedImage="person" id="62J-kA-vg2"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f4v-id-GAr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1063" y="769"/>
+        </scene>
+        <!--旅記録-->
+        <scene sceneID="sj2-wR-2pq">
+            <objects>
+                <viewController id="0g3-Kd-BfX" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="2Sf-Pq-8gf">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="cb6-pU-stS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="旅記録" image="square.grid.2x2" catalog="system" selectedImage="square.grid.2x2" id="Ct2-6h-i40"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Kve-6x-dff" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1063" y="-704"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="QdR-Nc-z6h">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="yn3-md-MB3" customClass="TabBarController" customModule="Tripom" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ASW-NN-o1P">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="0g3-Kd-BfX" kind="relationship" relationship="viewControllers" id="BjR-dS-lAa"/>
+                        <segue destination="Bc2-eN-1Dz" kind="relationship" relationship="viewControllers" id="NgK-zG-ieh"/>
+                        <segue destination="8xp-6W-BeN" kind="relationship" relationship="viewControllers" id="X9w-TH-uwj"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SFY-Bd-HVU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136.64122137404578" y="3.5211267605633805"/>
+        </scene>
+        <!--旅を開始-->
+        <scene sceneID="Hmm-nA-Ic9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bc2-eN-1Dz" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="旅を開始" image="figure.walk" catalog="system" id="NhX-9B-WAh"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="80C-eJ-P9J">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5Ol-s1-T4O" kind="relationship" relationship="rootViewController" id="DV2-IH-ySn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BLC-BC-cY7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1062" y="4"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="figure.walk" catalog="system" width="95" height="128"/>
+        <image name="person" catalog="system" width="128" height="121"/>
+        <image name="square.grid.2x2" catalog="system" width="128" height="114"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
