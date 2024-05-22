@@ -16,6 +16,8 @@
 		5598524A2BF9DFD8001A9D7F /* StartTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559852492BF9DFD8001A9D7F /* StartTripViewController.swift */; };
 		5598524C2BF9E3AD001A9D7F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598524B2BF9E3AD001A9D7F /* TabBarController.swift */; };
 		559852502BF9F6CB001A9D7F /* TripRequirementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598524F2BF9F6CB001A9D7F /* TripRequirementsViewController.swift */; };
+		55D256A62BFD7C5200F4D1EA /* OnATripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D256A52BFD7C5200F4D1EA /* OnATripViewController.swift */; };
+		55D256AA2BFD81E100F4D1EA /* FinishTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D256A92BFD81E100F4D1EA /* FinishTripViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		559852492BF9DFD8001A9D7F /* StartTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTripViewController.swift; sourceTree = "<group>"; };
 		5598524B2BF9E3AD001A9D7F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5598524F2BF9F6CB001A9D7F /* TripRequirementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRequirementsViewController.swift; sourceTree = "<group>"; };
+		55D256A52BFD7C5200F4D1EA /* OnATripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnATripViewController.swift; sourceTree = "<group>"; };
+		55D256A92BFD81E100F4D1EA /* FinishTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishTripViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,8 @@
 				5598524B2BF9E3AD001A9D7F /* TabBarController.swift */,
 				559852492BF9DFD8001A9D7F /* StartTripViewController.swift */,
 				5598524F2BF9F6CB001A9D7F /* TripRequirementsViewController.swift */,
+				55D256A52BFD7C5200F4D1EA /* OnATripViewController.swift */,
+				55D256A92BFD81E100F4D1EA /* FinishTripViewController.swift */,
 			);
 			path = Tripom;
 			sourceTree = "<group>";
@@ -147,7 +153,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				55D256AA2BFD81E100F4D1EA /* FinishTripViewController.swift in Sources */,
 				559852502BF9F6CB001A9D7F /* TripRequirementsViewController.swift in Sources */,
+				55D256A62BFD7C5200F4D1EA /* OnATripViewController.swift in Sources */,
 				5598524A2BF9DFD8001A9D7F /* StartTripViewController.swift in Sources */,
 				558711DD2BF9D93A006DCB29 /* ViewController.swift in Sources */,
 				558711D92BF9D93A006DCB29 /* AppDelegate.swift in Sources */,

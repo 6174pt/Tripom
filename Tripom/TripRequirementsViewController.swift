@@ -11,12 +11,31 @@ class TripRequirementsViewController: UIViewController {
     
     @IBOutlet var startButton: UIButton!
     @IBOutlet var resetButton: UIButton!
+    @IBOutlet var destinationRequirementLabel: UILabel!
+    @IBOutlet var transportationRequirementLabel: UILabel!
+    @IBOutlet var costRequirementLabel: UILabel!
+    @IBOutlet var curfewRequirementLabel: UILabel!
+    
+    let destinationRequirementArray: [String] = ["東京駅", "高尾山", "江ノ島", "山下公園"]
+    let transportationRequirementArray: [String] = ["自転車", "電車", "バス", "徒歩"]
+    let costRequirementArray: [Int] = [1000, 2000, 3000, 4000]
+    let curfewRequirementArray: [String] = ["16:00", "17:00", "18:00", "19:00"]
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.hidesBackButton = true
+        
+        let destinationRequirementIndex = Int.random(in: 0...3)
+        let transportationRequirementIndex = Int.random(in: 0...3)
+        let costRequirementIndex = Int.random(in: 0...3)
+        let curfewRequirementIndex = Int.random(in: 0...3)
+        
+        destinationRequirementLabel.text = destinationRequirementArray[destinationRequirementIndex]
+        transportationRequirementLabel.text = transportationRequirementArray[transportationRequirementIndex]
+        costRequirementLabel.text = String(costRequirementArray[costRequirementIndex])
+        curfewRequirementLabel.text = curfewRequirementArray[curfewRequirementIndex]
 
         
         let buttonWidth: CGFloat = self.view.frame.size.width * 3 / 4
@@ -38,16 +57,21 @@ class TripRequirementsViewController: UIViewController {
 
     }
     
+    @IBAction func tappedStartButton(){
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "OnATripViewController") as! OnATripViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+//    ’旅条件をリセットする’ボタンを押した時
     @IBAction func tappedResetButton() {
         let alert: UIAlertController = UIAlertController(title: "旅条件をリセットしますか？", message: "旅条件をリセットすると、旅完了後に加算される旅ポイントが減少します", preferredStyle: .alert)
         
         let defaultAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .default, handler: {
             (action: UIAlertAction) -> Void in
-            print("キャンセル")
+            
         })
         let cancelAction: UIAlertAction = UIAlertAction(title: "リセット", style: .default, handler: {
             (action: UIAlertAction) -> Void in
-            print("リセット")
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "StartTripViewController") as! StartTripViewController
             self.navigationController?.pushViewController(vc, animated: true)
         })
