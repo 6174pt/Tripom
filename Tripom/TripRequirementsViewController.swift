@@ -16,6 +16,9 @@ class TripRequirementsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.hidesBackButton = true
+
+        
         let buttonWidth: CGFloat = self.view.frame.size.width * 3 / 4
         let buttonHeight: CGFloat = buttonWidth * 1 / 5
         
@@ -45,6 +48,8 @@ class TripRequirementsViewController: UIViewController {
         let cancelAction: UIAlertAction = UIAlertAction(title: "リセット", style: .default, handler: {
             (action: UIAlertAction) -> Void in
             print("リセット")
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "StartTripViewController") as! StartTripViewController
+            self.navigationController?.pushViewController(vc, animated: true)
         })
         
         alert.addAction(defaultAction)

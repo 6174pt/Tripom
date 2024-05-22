@@ -11,8 +11,7 @@
         <!--旅を始める-->
         <scene sceneID="f0X-p3-FNN">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9yR-xq-8Ra" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <viewController id="5Ol-s1-T4O" customClass="StartTripViewController" customModule="Tripom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StartTripViewController" id="5Ol-s1-T4O" customClass="StartTripViewController" customModule="Tripom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OD6-ku-znn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,6 +40,7 @@
                         <outlet property="startButton" destination="caC-in-b6l" id="Eb9-1q-H7R"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9yR-xq-8Ra" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1851" y="4"/>
         </scene>
@@ -62,7 +62,7 @@
         <!--旅条件-->
         <scene sceneID="5fk-pt-wXe">
             <objects>
-                <viewController id="b4f-tP-kct" customClass="TripRequirementsViewController" customModule="Tripom" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TripRequirementsViewController" id="b4f-tP-kct" customClass="TripRequirementsViewController" customModule="Tripom" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wGE-18-zGi">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
