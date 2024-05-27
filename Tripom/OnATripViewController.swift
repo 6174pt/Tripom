@@ -46,6 +46,7 @@ class OnATripViewController: UIViewController {
             (action: UIAlertAction) -> Void in
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "FinishTripViewController") as! FinishTripViewController
             self.navigationController?.pushViewController(vc, animated: true)
+            print("bbb")
         })
         
         alert.addAction(defaultAction)
