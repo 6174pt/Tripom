@@ -14,6 +14,9 @@
 		558435272C0568190092474A /* TransportationRequirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558435262C0568190092474A /* TransportationRequirements.swift */; };
 		558435292C0586090092474A /* CostRequirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558435282C0586090092474A /* CostRequirements.swift */; };
 		5584352B2C0586400092474A /* CurfewRequirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584352A2C0586400092474A /* CurfewRequirements.swift */; };
+		5584352D2C0593990092474A /* TripLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584352C2C0593990092474A /* TripLog.swift */; };
+		5584352F2C0594070092474A /* RecordTripLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584352E2C0594070092474A /* RecordTripLogViewController.swift */; };
+		558435312C05950F0092474A /* NowTripRequirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558435302C05950F0092474A /* NowTripRequirements.swift */; };
 		558711D92BF9D93A006DCB29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558711D82BF9D93A006DCB29 /* AppDelegate.swift */; };
 		558711DB2BF9D93A006DCB29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558711DA2BF9D93A006DCB29 /* SceneDelegate.swift */; };
 		558711DD2BF9D93A006DCB29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558711DC2BF9D93A006DCB29 /* ViewController.swift */; };
@@ -47,6 +50,9 @@
 		558435262C0568190092474A /* TransportationRequirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportationRequirements.swift; sourceTree = "<group>"; };
 		558435282C0586090092474A /* CostRequirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostRequirements.swift; sourceTree = "<group>"; };
 		5584352A2C0586400092474A /* CurfewRequirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurfewRequirements.swift; sourceTree = "<group>"; };
+		5584352C2C0593990092474A /* TripLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLog.swift; sourceTree = "<group>"; };
+		5584352E2C0594070092474A /* RecordTripLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTripLogViewController.swift; sourceTree = "<group>"; };
+		558435302C05950F0092474A /* NowTripRequirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowTripRequirements.swift; sourceTree = "<group>"; };
 		558711D52BF9D93A006DCB29 /* Tripom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tripom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		558711D82BF9D93A006DCB29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		558711DA2BF9D93A006DCB29 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,16 +106,19 @@
 				558711E12BF9D93C006DCB29 /* Assets.xcassets */,
 				558711E32BF9D93C006DCB29 /* LaunchScreen.storyboard */,
 				558711E62BF9D93C006DCB29 /* Info.plist */,
+				5584351A2C04E5BF0092474A /* ProfileViewController.swift */,
 				5598524B2BF9E3AD001A9D7F /* TabBarController.swift */,
 				559852492BF9DFD8001A9D7F /* StartTripViewController.swift */,
 				5598524F2BF9F6CB001A9D7F /* TripRequirementsViewController.swift */,
 				55D256A52BFD7C5200F4D1EA /* OnATripViewController.swift */,
 				55D256A92BFD81E100F4D1EA /* FinishTripViewController.swift */,
-				5584351A2C04E5BF0092474A /* ProfileViewController.swift */,
+				5584352E2C0594070092474A /* RecordTripLogViewController.swift */,
 				558435212C0538810092474A /* DestinationRequirements.swift */,
 				558435262C0568190092474A /* TransportationRequirements.swift */,
 				558435282C0586090092474A /* CostRequirements.swift */,
 				5584352A2C0586400092474A /* CurfewRequirements.swift */,
+				5584352C2C0593990092474A /* TripLog.swift */,
+				558435302C05950F0092474A /* NowTripRequirements.swift */,
 			);
 			path = Tripom;
 			sourceTree = "<group>";
@@ -199,8 +208,11 @@
 				558435222C0538810092474A /* DestinationRequirements.swift in Sources */,
 				55D256A62BFD7C5200F4D1EA /* OnATripViewController.swift in Sources */,
 				5584352B2C0586400092474A /* CurfewRequirements.swift in Sources */,
+				5584352F2C0594070092474A /* RecordTripLogViewController.swift in Sources */,
 				5598524A2BF9DFD8001A9D7F /* StartTripViewController.swift in Sources */,
 				558711DD2BF9D93A006DCB29 /* ViewController.swift in Sources */,
+				5584352D2C0593990092474A /* TripLog.swift in Sources */,
+				558435312C05950F0092474A /* NowTripRequirements.swift in Sources */,
 				558711D92BF9D93A006DCB29 /* AppDelegate.swift in Sources */,
 				5584351B2C04E5BF0092474A /* ProfileViewController.swift in Sources */,
 				5598524C2BF9E3AD001A9D7F /* TabBarController.swift in Sources */,

@@ -6,14 +6,32 @@
 //
 
 import UIKit
+import RealmSwift
 
 class OnATripViewController: UIViewController {
     
     @IBOutlet var finishButton: UIButton!
     @IBOutlet var retireButton: UIButton!
+    @IBOutlet var destinationRequirementLabel: UILabel!
+    @IBOutlet var transportationRequirementLabel: UILabel!
+    @IBOutlet var costRequirementLabel: UILabel!
+    @IBOutlet var curfewRequirementLabel: UILabel!
+    
+    let realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        '今の旅の旅条件'をラベルに出力
+        let nowTripRequirements = realm.objects(NowTripRequirements.self)
+        if let nowTripRequirement = nowTripRequirements.first {
+            destinationRequirementLabel.text = nowTripRequirement.nowDestinationRequirement
+            transportationRequirementLabel.text = nowTripRequirement.nowTransportationRequirement
+            costRequirementLabel.text = String(nowTripRequirement.nowCostRequirement)
+            curfewRequirementLabel.text = nowTripRequirement.nowCurfewRequirement
+                } else {
+                    
+                }
         
         self.navigationItem.hidesBackButton = true
 
