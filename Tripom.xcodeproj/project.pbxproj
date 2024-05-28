@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		5584351B2C04E5BF0092474A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584351A2C04E5BF0092474A /* ProfileViewController.swift */; };
+		558435202C0537D30092474A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5584351F2C0537D30092474A /* RealmSwift */; };
+		558435222C0538810092474A /* DestinationRequirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558435212C0538810092474A /* DestinationRequirements.swift */; };
+		558435252C05615C0092474A /* RealmSwift in Embed Frameworks */ = {isa = PBXBuildFile; productRef = 5584351F2C0537D30092474A /* RealmSwift */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		558435272C0568190092474A /* TransportationRequirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558435262C0568190092474A /* TransportationRequirements.swift */; };
+		558435292C0586090092474A /* CostRequirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558435282C0586090092474A /* CostRequirements.swift */; };
+		5584352B2C0586400092474A /* CurfewRequirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584352A2C0586400092474A /* CurfewRequirements.swift */; };
 		558711D92BF9D93A006DCB29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558711D82BF9D93A006DCB29 /* AppDelegate.swift */; };
 		558711DB2BF9D93A006DCB29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558711DA2BF9D93A006DCB29 /* SceneDelegate.swift */; };
 		558711DD2BF9D93A006DCB29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558711DC2BF9D93A006DCB29 /* ViewController.swift */; };
@@ -21,8 +27,26 @@
 		55D256AA2BFD81E100F4D1EA /* FinishTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D256A92BFD81E100F4D1EA /* FinishTripViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		558435242C05610F0092474A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				558435252C05615C0092474A /* RealmSwift in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		5584351A2C04E5BF0092474A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		558435212C0538810092474A /* DestinationRequirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationRequirements.swift; sourceTree = "<group>"; };
+		558435262C0568190092474A /* TransportationRequirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportationRequirements.swift; sourceTree = "<group>"; };
+		558435282C0586090092474A /* CostRequirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostRequirements.swift; sourceTree = "<group>"; };
+		5584352A2C0586400092474A /* CurfewRequirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurfewRequirements.swift; sourceTree = "<group>"; };
 		558711D52BF9D93A006DCB29 /* Tripom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tripom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		558711D82BF9D93A006DCB29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		558711DA2BF9D93A006DCB29 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -43,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558435202C0537D30092474A /* RealmSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +106,10 @@
 				55D256A52BFD7C5200F4D1EA /* OnATripViewController.swift */,
 				55D256A92BFD81E100F4D1EA /* FinishTripViewController.swift */,
 				5584351A2C04E5BF0092474A /* ProfileViewController.swift */,
+				558435212C0538810092474A /* DestinationRequirements.swift */,
+				558435262C0568190092474A /* TransportationRequirements.swift */,
+				558435282C0586090092474A /* CostRequirements.swift */,
+				5584352A2C0586400092474A /* CurfewRequirements.swift */,
 			);
 			path = Tripom;
 			sourceTree = "<group>";
@@ -95,12 +124,16 @@
 				558711D12BF9D93A006DCB29 /* Sources */,
 				558711D22BF9D93A006DCB29 /* Frameworks */,
 				558711D32BF9D93A006DCB29 /* Resources */,
+				558435242C05610F0092474A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = Tripom;
+			packageProductDependencies = (
+				5584351F2C0537D30092474A /* RealmSwift */,
+			);
 			productName = Tripom;
 			productReference = 558711D52BF9D93A006DCB29 /* Tripom.app */;
 			productType = "com.apple.product-type.application";
@@ -129,6 +162,9 @@
 				Base,
 			);
 			mainGroup = 558711CC2BF9D93A006DCB29;
+			packageReferences = (
+				5584351C2C0537D30092474A /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 558711D62BF9D93A006DCB29 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -156,9 +192,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				558435272C0568190092474A /* TransportationRequirements.swift in Sources */,
 				55D256AA2BFD81E100F4D1EA /* FinishTripViewController.swift in Sources */,
+				558435292C0586090092474A /* CostRequirements.swift in Sources */,
 				559852502BF9F6CB001A9D7F /* TripRequirementsViewController.swift in Sources */,
+				558435222C0538810092474A /* DestinationRequirements.swift in Sources */,
 				55D256A62BFD7C5200F4D1EA /* OnATripViewController.swift in Sources */,
+				5584352B2C0586400092474A /* CurfewRequirements.swift in Sources */,
 				5598524A2BF9DFD8001A9D7F /* StartTripViewController.swift in Sources */,
 				558711DD2BF9D93A006DCB29 /* ViewController.swift in Sources */,
 				558711D92BF9D93A006DCB29 /* AppDelegate.swift in Sources */,
@@ -385,6 +425,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5584351C2C0537D30092474A /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5584351F2C0537D30092474A /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5584351C2C0537D30092474A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 558711CD2BF9D93A006DCB29 /* Project object */;
 }

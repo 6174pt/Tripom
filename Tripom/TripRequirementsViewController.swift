@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class TripRequirementsViewController: UIViewController {
     
@@ -16,27 +17,51 @@ class TripRequirementsViewController: UIViewController {
     @IBOutlet var costRequirementLabel: UILabel!
     @IBOutlet var curfewRequirementLabel: UILabel!
     
-    let destinationRequirementArray: [String] = ["東京駅", "高尾山", "江ノ島", "山下公園"]
-    let transportationRequirementArray: [String] = ["自転車", "電車", "バス", "徒歩"]
-    let costRequirementArray: [Int] = [1000, 2000, 3000, 4000]
-    let curfewRequirementArray: [String] = ["16:00", "17:00", "18:00", "19:00"]
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.navigationItem.hidesBackButton = true
         
-        let destinationRequirementIndex = Int.random(in: 0...3)
-        let transportationRequirementIndex = Int.random(in: 0...3)
-        let costRequirementIndex = Int.random(in: 0...3)
-        let curfewRequirementIndex = Int.random(in: 0...3)
+        let realm = try! Realm()
         
-        destinationRequirementLabel.text = destinationRequirementArray[destinationRequirementIndex]
-        transportationRequirementLabel.text = transportationRequirementArray[transportationRequirementIndex]
-        costRequirementLabel.text = String(costRequirementArray[costRequirementIndex])
-        curfewRequirementLabel.text = curfewRequirementArray[curfewRequirementIndex]
+//        isPresented = trueの旅条件だけフィルタリング
+        let tripDestinationRequirement = realm.objects(DestinationRequirements.self).filter("isPresented = true")
+        let tripTransportationRequirement = realm.objects(TransportationRequirements.self).filter("isPresented = true")
+        let tripCostRequirement = realm.objects(CostRequirements.self).filter("isPresented = true")
+        let tripCurfewRequirement = realm.objects(CurfewRequirements.self).filter("isPresented = true")
 
+//        ランダムな旅条件を出力
+//        目的地
+        if let randomDestinationRequirements = tripDestinationRequirement.randomElement() {
+            print("destination: \(randomDestinationRequirements.destinationRequirement), tripPoint: \(randomDestinationRequirements.tripPoint)")
+            destinationRequirementLabel.text = randomDestinationRequirements.destinationRequirement
+        } else {
+            print("No persons found in the database.")
+        }
+        
+//        交通機関
+        if let randomTransportationRequirements = tripTransportationRequirement.randomElement() {
+            print("destination: \(randomTransportationRequirements.transportationRequirement), tripPoint: \(randomTransportationRequirements.tripPoint)")
+            transportationRequirementLabel.text = randomTransportationRequirements.transportationRequirement
+        } else {
+            print("No persons found in the database.")
+        }
+        
+//        費用
+        if let randomCostRequirements = tripCostRequirement.randomElement() {
+            print("destination: \(randomCostRequirements.costRequirement), tripPoint: \(randomCostRequirements.tripPoint)")
+            costRequirementLabel.text = String(randomCostRequirements.costRequirement)
+        } else {
+            print("No persons found in the database.")
+        }
+        
+//        帰宅時間
+        if let randomCurfewRequirements = tripCurfewRequirement.randomElement() {
+            print("destination: \(randomCurfewRequirements.curfewRequirement), tripPoint: \(randomCurfewRequirements.tripPoint)")
+            curfewRequirementLabel.text = randomCurfewRequirements.curfewRequirement
+        } else {
+            print("No persons found in the database.")
+        }
         
         let buttonWidth: CGFloat = self.view.frame.size.width * 3 / 4
         let buttonHeight: CGFloat = buttonWidth * 1 / 5
