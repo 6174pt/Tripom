@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let config = Realm.Configuration(schemaVersion: 1)
+        let config = Realm.Configuration(schemaVersion: 3)
         Realm.Configuration.defaultConfiguration = config
         
         setupInitialData()
@@ -59,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
            
 //        交通機関
 //        すでにデータが存在するか確認
-        let existingTransportationRequirementsData = realm.objects(DestinationRequirements.self)
+        let existingTransportationRequirementsData = realm.objects(TransportationRequirements.self)
         if existingTransportationRequirementsData.isEmpty {
             try! realm.write {
                 let transportationRequirement1 = TransportationRequirements()
@@ -89,8 +89,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        費用
 //        すでにデータが存在するか確認
-        let existingCostnRequirementsData = realm.objects(CostRequirements.self)
-        if existingTransportationRequirementsData.isEmpty {
+        let existingCostRequirementsData = realm.objects(CostRequirements.self)
+        if existingCostRequirementsData.isEmpty {
             try! realm.write {
                 
                 let costRequirement1 = CostRequirements()
@@ -120,8 +120,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
              
 //        帰宅時間
 //        すでにデータが存在するか確認
-        let existingCurfewnRequirementsData = realm.objects(CurfewRequirements.self)
-        if existingTransportationRequirementsData.isEmpty {
+        let existingCurfewRequirementsData = realm.objects(CurfewRequirements.self)
+        if existingCurfewRequirementsData.isEmpty {
             try! realm.write {
                 let curfewRequirement1 = CurfewRequirements()
                 curfewRequirement1.curfewRequirement = "16:00"
