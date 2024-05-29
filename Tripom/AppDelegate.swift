@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let config = Realm.Configuration(schemaVersion: 3)
+        let config = Realm.Configuration(schemaVersion: 4)
         Realm.Configuration.defaultConfiguration = config
         
         setupInitialData()
@@ -57,7 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Initial data already exists in Realm.")
         }
            
-//        交通機関
+//        交通手段
 //        すでにデータが存在するか確認
         let existingTransportationRequirementsData = realm.objects(TransportationRequirements.self)
         if existingTransportationRequirementsData.isEmpty {

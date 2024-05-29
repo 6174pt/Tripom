@@ -17,7 +17,15 @@ class StartTripViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        スタートボタン
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.tabBarController?.tabBar.alpha = 1
+        self.tabBarController?.tabBar.isHidden = false
+        
+        //        スタートボタン
         startButton.configuration = nil
         let startButtonSize: CGFloat = self.view.frame.size.width * 2 / 3
         startButton.backgroundColor = UIColor(red: 236 / 255, green: 207 / 255, blue: 101 / 255, alpha: 1)
@@ -27,7 +35,7 @@ class StartTripViewController: UIViewController {
         startButton.setTitleColor(UIColor.white, for: .normal)
         startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 40)
         
-//        roulletView(ルーレットを表示するView)
+        //        roulletView(ルーレットを表示するView)
         rouletteView.backgroundColor = UIColor.white
         rouletteView.frame = CGRect(x: (self.view.frame.size.width / 2) - startButtonSize / 2, y: (self.view.frame.size.height / 2) - startButtonSize / 2, width: startButtonSize, height: startButtonSize)
         rouletteView.layer.cornerRadius = startButtonSize / 2
@@ -35,7 +43,6 @@ class StartTripViewController: UIViewController {
         setupRoulette()
         setupCenterCircle()
         rouletteView.isHidden = true
-        
     }
     
 //    rouletteViewのセットアップ
@@ -47,7 +54,7 @@ class StartTripViewController: UIViewController {
         for index in 0..<numberOfSections {
             let sectionView = UIView()
             sectionView.translatesAutoresizingMaskIntoConstraints = false
-            //                    セクションごとに色を設定
+            // セクションごとに色を設定
             sectionView.backgroundColor = index % 2 == 0 ? UIColor(red: 242 / 255, green: 223 / 255, blue: 154 / 255, alpha: 1.0) : .white
             
             rouletteView.addSubview(sectionView)
@@ -128,7 +135,7 @@ class StartTripViewController: UIViewController {
                        delay: 0,
                        options: [.curveEaseInOut],
                        animations: {
-            let tappedStartButtonSize: CGFloat = self.view.frame.size.height + 50
+            let tappedStartButtonSize: CGFloat = self.view.frame.size.height + 100
             self.startButton.frame = CGRect(x: (self.view.frame.size.width / 2) - tappedStartButtonSize / 2, y: (self.view.frame.size.height / 2) - tappedStartButtonSize / 2, width: tappedStartButtonSize, height: tappedStartButtonSize)
             self.startButton.layer.cornerRadius = tappedStartButtonSize / 2
             self.startButton.setTitle("", for: .normal)

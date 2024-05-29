@@ -72,7 +72,7 @@ class TripRequirementsViewController: UIViewController {
             print("No persons found in the database.")
         }
         
-//        交通機関
+//        交通手段
         if let randomTransportationRequirements = tripTransportationRequirement.randomElement() {
             print("destination: \(randomTransportationRequirements.transportationRequirement), tripPoint: \(randomTransportationRequirements.tripPoint)")
             transportationRequirementLabel.text = randomTransportationRequirements.transportationRequirement

@@ -6,7 +6,8 @@
 //
 
 import UIKit
-import QuartzCore
+import RealmSwift
+//import QuartzCore
 
 class FinishTripViewController: UIViewController {
     
@@ -17,14 +18,7 @@ class FinishTripViewController: UIViewController {
 //            case diamond
 //            case image(UIImage)
 //        }
-    
-    struct TripPointLevel{
-        let NowTripPoint: Int
-        let NowTripLevel: Int
-    }
-    
-    let addedTripPoint: Int = 0
-    
+
     let profileView: UIView = UIView()
     let profileMessageLabel: UILabel = UILabel()
     let confettiView: UIView = UIView()
@@ -108,6 +102,9 @@ class FinishTripViewController: UIViewController {
         recordNowButton.setTitle("旅を記録する", for: .normal)
         recordNowButton.setTitleColor(UIColor.white, for: .normal)
         recordNowButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        recordNowButton.addAction(UIAction(handler: { _ in
+            self.tappedRecordNowButton()
+        }), for: .touchUpInside)
         view.addSubview(recordNowButton)
         
 //        ”後で記録する”ボタン
@@ -117,6 +114,9 @@ class FinishTripViewController: UIViewController {
         recordLaterButton.setTitle("後で記録する", for: .normal)
         recordLaterButton.setTitleColor(UIColor.white, for: .normal)
         recordLaterButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        recordLaterButton.addAction(UIAction(handler: { _ in
+            self.tappedRecordLaterButton()
+        }), for: .touchUpInside)
         view.addSubview(recordLaterButton)
         
         actionButton.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height - buttonHeight * 2 - 150 / 2)
@@ -125,6 +125,11 @@ class FinishTripViewController: UIViewController {
         
         setupConfettiLayer()
         
+//        画面遷移後の流れ
+//        ”お疲れ様です！\n旅は楽しめましたか？”
+//        "旅ポイント + \(addedTripPoint)pt"ふわっと表示させたい
+//        もし旅レベルが上がったらアニメーション付きで"Lv. ~"みたいな
+        
 //        紙吹雪のアニメーションを止める
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                     self.stopConfetti()
@@ -132,8 +137,35 @@ class FinishTripViewController: UIViewController {
         
     }
     
+    func tappedRecordNowButton(){
+//        旅記録編集画面に遷移
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecordTripLogViewController") as! RecordTripLogViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+    }
+    
+    func tappedRecordLaterButton() {
+//        '旅を始める'画面に遷移
+//        self.navigationController?.popToRootViewController(animated: true)
+        if let tabBarController = self.tabBarController {
+                    print("TabBarController found")
+                    
+                    // 選択するタブのインデックスを設定
+                    tabBarController.selectedIndex = 1
+                    print("Tab index set to 1")
+                    
+                    // ナビゲーションスタックのルートに戻る
+                    self.navigationController?.popToRootViewController(animated: true)
+                    print("Popped to root view controller")
+                } else {
+                    print("No TabBarController found")
+                }
+        
+    }
+
+    
     @objc func actionButtonTapped(){
-        profileMessageLabel.text = "旅ポイント + \(addedTripPoint)pt"
+//        profileMessageLabel.text = "旅ポイント + \(addedTripPoint)pt"
 //        もし旅レベルが上がったら旅レベルが上がったことを明示、confettiをさらに表示する
     }
     

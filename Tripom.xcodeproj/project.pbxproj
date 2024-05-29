@@ -17,6 +17,9 @@
 		5584352D2C0593990092474A /* TripLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584352C2C0593990092474A /* TripLog.swift */; };
 		5584352F2C0594070092474A /* RecordTripLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584352E2C0594070092474A /* RecordTripLogViewController.swift */; };
 		558435312C05950F0092474A /* NowTripRequirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558435302C05950F0092474A /* NowTripRequirements.swift */; };
+		558435332C05AB360092474A /* TripLogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558435322C05AB360092474A /* TripLogsViewController.swift */; };
+		558435362C05B0E80092474A /* TripLogsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558435342C05B0E80092474A /* TripLogsCollectionViewCell.swift */; };
+		558435372C05B0E80092474A /* TripLogsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 558435352C05B0E80092474A /* TripLogsCollectionViewCell.xib */; };
 		558711D92BF9D93A006DCB29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558711D82BF9D93A006DCB29 /* AppDelegate.swift */; };
 		558711DB2BF9D93A006DCB29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558711DA2BF9D93A006DCB29 /* SceneDelegate.swift */; };
 		558711DD2BF9D93A006DCB29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558711DC2BF9D93A006DCB29 /* ViewController.swift */; };
@@ -53,6 +56,9 @@
 		5584352C2C0593990092474A /* TripLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLog.swift; sourceTree = "<group>"; };
 		5584352E2C0594070092474A /* RecordTripLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordTripLogViewController.swift; sourceTree = "<group>"; };
 		558435302C05950F0092474A /* NowTripRequirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowTripRequirements.swift; sourceTree = "<group>"; };
+		558435322C05AB360092474A /* TripLogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogsViewController.swift; sourceTree = "<group>"; };
+		558435342C05B0E80092474A /* TripLogsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogsCollectionViewCell.swift; sourceTree = "<group>"; };
+		558435352C05B0E80092474A /* TripLogsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripLogsCollectionViewCell.xib; sourceTree = "<group>"; };
 		558711D52BF9D93A006DCB29 /* Tripom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tripom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		558711D82BF9D93A006DCB29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		558711DA2BF9D93A006DCB29 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -117,8 +123,11 @@
 				558435262C0568190092474A /* TransportationRequirements.swift */,
 				558435282C0586090092474A /* CostRequirements.swift */,
 				5584352A2C0586400092474A /* CurfewRequirements.swift */,
-				5584352C2C0593990092474A /* TripLog.swift */,
 				558435302C05950F0092474A /* NowTripRequirements.swift */,
+				5584352C2C0593990092474A /* TripLog.swift */,
+				558435322C05AB360092474A /* TripLogsViewController.swift */,
+				558435342C05B0E80092474A /* TripLogsCollectionViewCell.swift */,
+				558435352C05B0E80092474A /* TripLogsCollectionViewCell.xib */,
 			);
 			path = Tripom;
 			sourceTree = "<group>";
@@ -190,6 +199,7 @@
 			files = (
 				558711E22BF9D93C006DCB29 /* Assets.xcassets in Resources */,
 				558711E52BF9D93C006DCB29 /* Base in Resources */,
+				558435372C05B0E80092474A /* TripLogsCollectionViewCell.xib in Resources */,
 				558711E02BF9D93A006DCB29 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +215,7 @@
 				55D256AA2BFD81E100F4D1EA /* FinishTripViewController.swift in Sources */,
 				558435292C0586090092474A /* CostRequirements.swift in Sources */,
 				559852502BF9F6CB001A9D7F /* TripRequirementsViewController.swift in Sources */,
+				558435362C05B0E80092474A /* TripLogsCollectionViewCell.swift in Sources */,
 				558435222C0538810092474A /* DestinationRequirements.swift in Sources */,
 				55D256A62BFD7C5200F4D1EA /* OnATripViewController.swift in Sources */,
 				5584352B2C0586400092474A /* CurfewRequirements.swift in Sources */,
@@ -217,6 +228,7 @@
 				5584351B2C04E5BF0092474A /* ProfileViewController.swift in Sources */,
 				5598524C2BF9E3AD001A9D7F /* TabBarController.swift in Sources */,
 				558711DB2BF9D93A006DCB29 /* SceneDelegate.swift in Sources */,
+				558435332C05AB360092474A /* TripLogsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

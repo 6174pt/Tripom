@@ -53,7 +53,7 @@ class OnATripViewController: UIViewController {
         retireButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 100)
     }
 
-    @IBAction func tappedfinishButton(){
+    @IBAction func tappedFinishButton(){
         let alert: UIAlertController = UIAlertController(title: "旅を完了しますか？", message: "旅を完了すると元の画面に戻れません。", preferredStyle: .alert)
         
         let defaultAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .default, handler: {
@@ -64,7 +64,6 @@ class OnATripViewController: UIViewController {
             (action: UIAlertAction) -> Void in
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "FinishTripViewController") as! FinishTripViewController
             self.navigationController?.pushViewController(vc, animated: true)
-            print("bbb")
         })
         
         alert.addAction(defaultAction)

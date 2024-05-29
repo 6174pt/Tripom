@@ -17,6 +17,7 @@ class TripLog: Object {
 //    旅ポイント(不要？？)
     @Persisted var tripPoint: Int = 20
 //    コメント
-    
-//    写真
+    @Persisted var tripComment: String = ""
+//    写真(複数枚の場合どうすればいい？？入れ子？)
+    @Persisted var tripPhoto: String = ""
 }
