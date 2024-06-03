@@ -7,6 +7,7 @@
 
 import UIKit
 import RealmSwift
+import Lottie
 
 class OnATripViewController: UIViewController {
     
@@ -16,6 +17,8 @@ class OnATripViewController: UIViewController {
     @IBOutlet var transportationRequirementLabel: UILabel!
     @IBOutlet var costRequirementLabel: UILabel!
     @IBOutlet var curfewRequirementLabel: UILabel!
+    
+    var animationView = LottieAnimationView()
     
     let realm = try! Realm()
 
@@ -32,6 +35,14 @@ class OnATripViewController: UIViewController {
         } else {
             
         }
+        
+        //アニメーション
+        animationView = LottieAnimationView(name: "Animation - 1717423675691")
+        animationView.frame = CGRect(x: view.frame.size.width / 4, y: 0, width: view.frame.size.width / 2, height: view.frame.size.height / 2)
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.play()
+        view.addSubview(animationView)
         
         self.navigationItem.hidesBackButton = true
 
