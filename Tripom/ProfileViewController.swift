@@ -20,6 +20,7 @@ class ProfileViewController: UIViewController {
         
 //        プロフィール表示ビュー
         profileView.frame=CGRect(x: 0, y: view.frame.size.height / 2 - view.frame.size.width / 2, width: view.frame.size.width, height: view.frame.size.width)
+        profileView.backgroundColor = UIColor.white
         view.addSubview(profileView)
         
 //        ユーザーアイコン
@@ -33,7 +34,7 @@ class ProfileViewController: UIViewController {
         
 //        円ゲージ
         let ciclePath=UIBezierPath(arcCenter: CGPoint(x: view.frame.size.width / 2, y: view.frame.size.width / 2), radius: iconImageSize / 2 + 10, startAngle: -(.pi/2), endAngle: .pi/2*3, clockwise: true)
-        let shape=CAShapeLayer()
+        let shape = CAShapeLayer()
         shape.path=ciclePath.cgPath
         shape.lineWidth=5
         shape.strokeColor = UIColor(red: 242 / 255, green: 223 / 255, blue: 154 / 255, alpha: 1.0).cgColor
@@ -104,11 +105,20 @@ class ProfileViewController: UIViewController {
 
 extension UIView {
     var image: UIImage {
-        UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
-        let context: CGContext = UIGraphicsGetCurrentContext()!
-        layer.render(in: context)
-        let capturedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        return capturedImage
+        let renderer = UIGraphicsImageRenderer(size: bounds.size)
+                return renderer.image { ctx in
+                    // 既存の描画内容をキャプチャ
+                    layer.render(in: ctx.cgContext)
+                    
+                    // ここに円ゲージを描画
+                    let iconImageSize: CGFloat = bounds.size.width * 1 / 3
+                    let circlePath = UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2, y: bounds.size.width / 2), radius: iconImageSize / 2 + 10, startAngle: -(.pi/2), endAngle: .pi/2, clockwise: true)
+                    
+                    ctx.cgContext.setLineWidth(5)
+                    ctx.cgContext.setStrokeColor(UIColor(red: 242 / 255, green: 223 / 255, blue: 154 / 255, alpha: 1.0).cgColor)
+                    ctx.cgContext.setLineCap(.round)
+                    ctx.cgContext.addPath(circlePath.cgPath)
+                    ctx.cgContext.strokePath()
+                }
     }
 }
