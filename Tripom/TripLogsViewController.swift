@@ -10,7 +10,7 @@ import RealmSwift
 
 //Realm：データの取得だけ
 //旅の記録を表示する画面
-class TripLogsViewController: UIViewController, UICollectionViewDataSource{
+class TripLogsViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate{
     
     let realm = try! Realm()
     var tripLogs: Results<TripLog>!
@@ -26,16 +26,17 @@ class TripLogsViewController: UIViewController, UICollectionViewDataSource{
         super.viewDidLoad()
 
         collectionView.dataSource = self
+        collectionView.delegate = self
         collectionView.register(UINib(nibName: "TripLogsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TripLogsCollectionViewCell")
         tripLogs = realm.objects(TripLog.self)
         
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.estimatedItemSize = .zero // 自動サイズ調整を無効にする
         }
-        
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 10
-        layout.itemSize = CGSize(width:self.view.frame.width / 2 - 10, height:(self.view.frame.width / 2 - 10) * 1.5)
+        layout.itemSize = CGSize(width: (self.view.frame.width - 30) / 2, height:(self.view.frame.width - 30 ) * 1.5 / 2 )
+        layout.sectionInset = UIEdgeInsets(top: 20,left: 10,bottom: 0,right: 10)
         collectionView.collectionViewLayout = layout
         
     }
@@ -62,12 +63,15 @@ class TripLogsViewController: UIViewController, UICollectionViewDataSource{
         return cell
     }
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//            // 例: セルの幅を画面の幅の90%、高さを200に設定
-//            let width = collectionView.bounds.width
-//            let height: CGFloat = 200
-//            return CGSize(width: width, height: height)
-//        }
+    // セルがタップされたとき
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print("tappedcell")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "TripLogViewController") as! TripLogViewController
+        vc.index = indexPath.row
+        vc.tripLogs = tripLogs 
+        self.navigationController?.pushViewController(vc, animated: true)
+//        self.present(vc, animated: true, completion: nil)
+    }
 
 
 }

@@ -19,20 +19,20 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
 //        プロフィール表示ビュー
-        profileView.frame=CGRect(x: 0, y: -50, width: view.frame.size.width, height: view.frame.size.width)
+        profileView.frame=CGRect(x: 0, y: view.frame.size.height / 2 - view.frame.size.width / 2, width: view.frame.size.width, height: view.frame.size.width)
         view.addSubview(profileView)
         
 //        ユーザーアイコン
         let iconImageSize: CGFloat = view.frame.size.width * 1 / 3
         let iconImageView = UIImageView()
         iconImageView.image = UIImage(named: "icon")
-        iconImageView.frame = CGRect(x: view.frame.size.width / 2 - iconImageSize / 2, y: view.frame.size.height / 2 - iconImageSize / 2, width: iconImageSize, height: iconImageSize)
+        iconImageView.frame = CGRect(x: view.frame.size.width / 2 - iconImageSize / 2, y: view.frame.size.width / 2 - iconImageSize / 2, width: iconImageSize, height: iconImageSize)
         iconImageView.layer.cornerRadius = iconImageSize / 2
         iconImageView.layer.masksToBounds = true
         profileView.addSubview(iconImageView)
         
 //        円ゲージ
-        let ciclePath=UIBezierPath(arcCenter: view.center, radius: iconImageSize / 2 + 10, startAngle: -(.pi/2), endAngle: .pi/2*3, clockwise: true)
+        let ciclePath=UIBezierPath(arcCenter: CGPoint(x: view.frame.size.width / 2, y: view.frame.size.width / 2), radius: iconImageSize / 2 + 10, startAngle: -(.pi/2), endAngle: .pi/2*3, clockwise: true)
         let shape=CAShapeLayer()
         shape.path=ciclePath.cgPath
         shape.lineWidth=5
@@ -53,7 +53,7 @@ class ProfileViewController: UIViewController {
         shape.add(animation,forKey: "animation")
         
 //        旅レベル
-        tripLevelLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.height / 2 + iconImageSize / 2, width: iconImageSize + 50 , height: iconImageSize / 2)
+        tripLevelLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width / 2 + iconImageSize / 2, width: iconImageSize + 50 , height: iconImageSize / 2)
         tripLevelLabel.textAlignment = NSTextAlignment.center
         tripLevelLabel.text = "Lv. 5"
 //        tripLevelLabel.text = "Lv. \(nowTripLevel)"
@@ -61,14 +61,14 @@ class ProfileViewController: UIViewController {
         profileView.addSubview(tripLevelLabel)
         
 //        ユーザー名
-        userNameLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.height / 2 + iconImageSize / 2 + iconImageSize / 2, width: iconImageSize + 50 , height: iconImageSize / 4)
+        userNameLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width / 2 + iconImageSize / 2 + iconImageSize / 2, width: iconImageSize + 50 , height: iconImageSize / 4)
         userNameLabel.textAlignment = NSTextAlignment.center
         userNameLabel.text = "Honoka Nishiyama"
 //        userNameLabel.text = "\(userName)"
         profileView.addSubview(userNameLabel)
         
 //        ユーザーID
-        userIDLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.height / 2 + iconImageSize / 2 + iconImageSize / 2 + iconImageSize / 4, width: iconImageSize + 50 , height: iconImageSize / 4)
+        userIDLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width / 2 + iconImageSize / 2 + iconImageSize / 2 + iconImageSize / 4, width: iconImageSize + 50 , height: iconImageSize / 4)
         userIDLabel.textAlignment = NSTextAlignment.center
         userIDLabel.text = "@honohonopi"
 //        userIDLabel.text = "\(userID)"
@@ -86,8 +86,29 @@ class ProfileViewController: UIViewController {
         shareProfileButton.setTitle("共有", for: .normal)
         shareProfileButton.setTitleColor(UIColor.white, for: .normal)
         shareProfileButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        shareProfileButton.addAction(UIAction(handler: { _ in
+            self.tappedShareProfileButton()
+        }), for: .touchUpInside)
         view.addSubview(shareProfileButton)
         
     }
+    
+    func tappedShareProfileButton() {
+        print("tappedShareProfileButton")
+        let image = profileView.image
+        let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        self.present(activityVC, animated: true, completion: nil)
+    }
 
+}
+
+extension UIView {
+    var image: UIImage {
+        UIGraphicsBeginImageContextWithOptions(bounds.size, false, 0.0)
+        let context: CGContext = UIGraphicsGetCurrentContext()!
+        layer.render(in: context)
+        let capturedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        return capturedImage
+    }
 }

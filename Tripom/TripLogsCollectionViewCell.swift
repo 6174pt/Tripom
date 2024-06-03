@@ -30,23 +30,6 @@ class TripLogsCollectionViewCell: UICollectionViewCell {
         print("cell")
         tripDateLabel.text = tripDate
         tripSpotLabel.text = tripSpot
-        //URL型にキャスト
-//        let fileURL = URL(string: imageName)
-//        print("imageName", imageName)
-//        //パス型に変換
-//        guard let filePath = fileURL?.path else { return }
-//        print("filePath", filePath)
-//        tripThumbnailImageView.image = UIImage(contentsOfFile: filePath)
-        
-        
-//        if let url = URL(string: imageName),
-//           let data = try? Data(contentsOf: url),
-//           let image = UIImage(data: data) {
-//            tripThumbnailImageView.image = image
-//        } else {
-//            // 画像読み込みに失敗した場合、デフォルト画像を設定する
-//            tripThumbnailImageView.image = UIImage(named: "defaultImage")
-//        }
         
         if let fileURL = URL(string: imageName) {
             // ファイルパスを取得

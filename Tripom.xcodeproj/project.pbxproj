@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		552127922C0DAD480019021E /* customProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552127912C0DAD480019021E /* customProfileViewController.swift */; };
 		5584351B2C04E5BF0092474A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584351A2C04E5BF0092474A /* ProfileViewController.swift */; };
 		558435202C0537D30092474A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5584351F2C0537D30092474A /* RealmSwift */; };
 		558435222C0538810092474A /* DestinationRequirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558435212C0538810092474A /* DestinationRequirements.swift */; };
@@ -36,6 +37,7 @@
 		55F503722C084AC100A8CE9A /* TripPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F503712C084AC100A8CE9A /* TripPhotos.swift */; };
 		55F503752C09242100A8CE9A /* AddPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F503742C09242100A8CE9A /* AddPhotoCollectionViewCell.xib */; };
 		55F503762C09242100A8CE9A /* AddPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F503732C09242100A8CE9A /* AddPhotoCollectionViewCell.swift */; };
+		55FDCDF32C0D486300A9F4AE /* TripLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55FDCDF22C0D486300A9F4AE /* TripLogViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -53,6 +55,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		552127912C0DAD480019021E /* customProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customProfileViewController.swift; sourceTree = "<group>"; };
 		5584351A2C04E5BF0092474A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		558435212C0538810092474A /* DestinationRequirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationRequirements.swift; sourceTree = "<group>"; };
 		558435262C0568190092474A /* TransportationRequirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportationRequirements.swift; sourceTree = "<group>"; };
@@ -82,6 +85,7 @@
 		55F503712C084AC100A8CE9A /* TripPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPhotos.swift; sourceTree = "<group>"; };
 		55F503732C09242100A8CE9A /* AddPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		55F503742C09242100A8CE9A /* AddPhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPhotoCollectionViewCell.xib; sourceTree = "<group>"; };
+		55FDCDF22C0D486300A9F4AE /* TripLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +127,7 @@
 				558711E32BF9D93C006DCB29 /* LaunchScreen.storyboard */,
 				558711E62BF9D93C006DCB29 /* Info.plist */,
 				5584351A2C04E5BF0092474A /* ProfileViewController.swift */,
+				552127912C0DAD480019021E /* customProfileViewController.swift */,
 				5598524B2BF9E3AD001A9D7F /* TabBarController.swift */,
 				559852492BF9DFD8001A9D7F /* StartTripViewController.swift */,
 				5598524F2BF9F6CB001A9D7F /* TripRequirementsViewController.swift */,
@@ -137,6 +142,7 @@
 				558435322C05AB360092474A /* TripLogsViewController.swift */,
 				558435342C05B0E80092474A /* TripLogsCollectionViewCell.swift */,
 				558435352C05B0E80092474A /* TripLogsCollectionViewCell.xib */,
+				55FDCDF22C0D486300A9F4AE /* TripLogViewController.swift */,
 				5584352E2C0594070092474A /* RecordTripLogViewController.swift */,
 				55F5036D2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.swift */,
 				55F5036E2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.xib */,
@@ -233,9 +239,11 @@
 				55F503762C09242100A8CE9A /* AddPhotoCollectionViewCell.swift in Sources */,
 				558435292C0586090092474A /* CostRequirements.swift in Sources */,
 				559852502BF9F6CB001A9D7F /* TripRequirementsViewController.swift in Sources */,
+				552127922C0DAD480019021E /* customProfileViewController.swift in Sources */,
 				558435362C05B0E80092474A /* TripLogsCollectionViewCell.swift in Sources */,
 				558435222C0538810092474A /* DestinationRequirements.swift in Sources */,
 				55D256A62BFD7C5200F4D1EA /* OnATripViewController.swift in Sources */,
+				55FDCDF32C0D486300A9F4AE /* TripLogViewController.swift in Sources */,
 				55F5036F2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.swift in Sources */,
 				5584352B2C0586400092474A /* CurfewRequirements.swift in Sources */,
 				5584352F2C0594070092474A /* RecordTripLogViewController.swift in Sources */,
