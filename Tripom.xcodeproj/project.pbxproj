@@ -31,6 +31,11 @@
 		559852502BF9F6CB001A9D7F /* TripRequirementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598524F2BF9F6CB001A9D7F /* TripRequirementsViewController.swift */; };
 		55D256A62BFD7C5200F4D1EA /* OnATripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D256A52BFD7C5200F4D1EA /* OnATripViewController.swift */; };
 		55D256AA2BFD81E100F4D1EA /* FinishTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D256A92BFD81E100F4D1EA /* FinishTripViewController.swift */; };
+		55F5036F2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F5036D2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.swift */; };
+		55F503702C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F5036E2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.xib */; };
+		55F503722C084AC100A8CE9A /* TripPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F503712C084AC100A8CE9A /* TripPhotos.swift */; };
+		55F503752C09242100A8CE9A /* AddPhotoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F503742C09242100A8CE9A /* AddPhotoCollectionViewCell.xib */; };
+		55F503762C09242100A8CE9A /* AddPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F503732C09242100A8CE9A /* AddPhotoCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -72,6 +77,11 @@
 		5598524F2BF9F6CB001A9D7F /* TripRequirementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRequirementsViewController.swift; sourceTree = "<group>"; };
 		55D256A52BFD7C5200F4D1EA /* OnATripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnATripViewController.swift; sourceTree = "<group>"; };
 		55D256A92BFD81E100F4D1EA /* FinishTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishTripViewController.swift; sourceTree = "<group>"; };
+		55F5036D2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogsPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		55F5036E2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripLogsPhotosCollectionViewCell.xib; sourceTree = "<group>"; };
+		55F503712C084AC100A8CE9A /* TripPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPhotos.swift; sourceTree = "<group>"; };
+		55F503732C09242100A8CE9A /* AddPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
+		55F503742C09242100A8CE9A /* AddPhotoCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddPhotoCollectionViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +128,6 @@
 				5598524F2BF9F6CB001A9D7F /* TripRequirementsViewController.swift */,
 				55D256A52BFD7C5200F4D1EA /* OnATripViewController.swift */,
 				55D256A92BFD81E100F4D1EA /* FinishTripViewController.swift */,
-				5584352E2C0594070092474A /* RecordTripLogViewController.swift */,
 				558435212C0538810092474A /* DestinationRequirements.swift */,
 				558435262C0568190092474A /* TransportationRequirements.swift */,
 				558435282C0586090092474A /* CostRequirements.swift */,
@@ -128,6 +137,12 @@
 				558435322C05AB360092474A /* TripLogsViewController.swift */,
 				558435342C05B0E80092474A /* TripLogsCollectionViewCell.swift */,
 				558435352C05B0E80092474A /* TripLogsCollectionViewCell.xib */,
+				5584352E2C0594070092474A /* RecordTripLogViewController.swift */,
+				55F5036D2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.swift */,
+				55F5036E2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.xib */,
+				55F503712C084AC100A8CE9A /* TripPhotos.swift */,
+				55F503732C09242100A8CE9A /* AddPhotoCollectionViewCell.swift */,
+				55F503742C09242100A8CE9A /* AddPhotoCollectionViewCell.xib */,
 			);
 			path = Tripom;
 			sourceTree = "<group>";
@@ -200,6 +215,8 @@
 				558711E22BF9D93C006DCB29 /* Assets.xcassets in Resources */,
 				558711E52BF9D93C006DCB29 /* Base in Resources */,
 				558435372C05B0E80092474A /* TripLogsCollectionViewCell.xib in Resources */,
+				55F503752C09242100A8CE9A /* AddPhotoCollectionViewCell.xib in Resources */,
+				55F503702C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.xib in Resources */,
 				558711E02BF9D93A006DCB29 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,11 +230,13 @@
 			files = (
 				558435272C0568190092474A /* TransportationRequirements.swift in Sources */,
 				55D256AA2BFD81E100F4D1EA /* FinishTripViewController.swift in Sources */,
+				55F503762C09242100A8CE9A /* AddPhotoCollectionViewCell.swift in Sources */,
 				558435292C0586090092474A /* CostRequirements.swift in Sources */,
 				559852502BF9F6CB001A9D7F /* TripRequirementsViewController.swift in Sources */,
 				558435362C05B0E80092474A /* TripLogsCollectionViewCell.swift in Sources */,
 				558435222C0538810092474A /* DestinationRequirements.swift in Sources */,
 				55D256A62BFD7C5200F4D1EA /* OnATripViewController.swift in Sources */,
+				55F5036F2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.swift in Sources */,
 				5584352B2C0586400092474A /* CurfewRequirements.swift in Sources */,
 				5584352F2C0594070092474A /* RecordTripLogViewController.swift in Sources */,
 				5598524A2BF9DFD8001A9D7F /* StartTripViewController.swift in Sources */,
@@ -229,6 +248,7 @@
 				5598524C2BF9E3AD001A9D7F /* TabBarController.swift in Sources */,
 				558711DB2BF9D93A006DCB29 /* SceneDelegate.swift in Sources */,
 				558435332C05AB360092474A /* TripLogsViewController.swift in Sources */,
+				55F503722C084AC100A8CE9A /* TripPhotos.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

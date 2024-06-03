@@ -22,6 +22,7 @@ class StartTripViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+//        旅の完了画面からの画面遷移に備えてTabBarを表示しておく
         self.tabBarController?.tabBar.alpha = 1
         self.tabBarController?.tabBar.isHidden = false
         

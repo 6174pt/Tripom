@@ -106,6 +106,7 @@ class TripRequirementsViewController: UIViewController {
     @IBAction func tappedStartButton(){
 //        '提案された旅条件'を'今の旅の旅条件'に代入する
         let existingNowTripRequirementsData = realm.objects(NowTripRequirements.self)
+//        '今の旅の旅条件'が空の時はそのまま'提案された旅条件'を'今の旅の旅条件'に代入する
         if existingNowTripRequirementsData.isEmpty {
             try! realm.write {
                 let nowTripRequirement = NowTripRequirements()
@@ -117,6 +118,7 @@ class TripRequirementsViewController: UIViewController {
                 nowTripRequirement.allTripPoint = nowDestinationRequirementTripPoint + nowTransportationRequirementTripPoint + nowTransportationRequirementTripPoint + nowCurfewRequirementTripPoint
                 realm.add(nowTripRequirement)
             }
+            //        '今の旅の旅条件'が空ではない時は'今の旅の旅条件'を空にして'提案された旅条件'を'今の旅の旅条件'に代入する
         } else {
             try! realm.write {
                 let objectToDelete = realm.objects(NowTripRequirements.self)

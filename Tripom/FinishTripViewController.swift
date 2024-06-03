@@ -146,21 +146,13 @@ class FinishTripViewController: UIViewController {
     
     func tappedRecordLaterButton() {
 //        '旅を始める'画面に遷移
-//        self.navigationController?.popToRootViewController(animated: true)
         if let tabBarController = self.tabBarController {
-                    print("TabBarController found")
-                    
-                    // 選択するタブのインデックスを設定
-                    tabBarController.selectedIndex = 1
-                    print("Tab index set to 1")
-                    
-                    // ナビゲーションスタックのルートに戻る
-                    self.navigationController?.popToRootViewController(animated: true)
-                    print("Popped to root view controller")
-                } else {
-                    print("No TabBarController found")
-                }
-        
+            // 選択するタブのインデックスを設定
+            tabBarController.selectedIndex = 1
+            self.navigationController?.popToRootViewController(animated: true)
+        } else {
+            print("No TabBarController found")
+        }
     }
 
     

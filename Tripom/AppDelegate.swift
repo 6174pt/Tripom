@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let config = Realm.Configuration(schemaVersion: 4)
+        let config = Realm.Configuration(schemaVersion: 7)
         Realm.Configuration.defaultConfiguration = config
         
         setupInitialData()
@@ -148,8 +148,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             print("Initial data already exists in Realm.")
         }
                 
-                
-            
+        //        旅の記録
+        //        すでにデータが存在するか確認
+//        let existingTripLogData = realm.objects(TripLog.self)
+//        if existingTripLogData.isEmpty {
+//            try! realm.write {
+//                let tripLog1 = TripLog()
+//                tripLog1.destinationRequirement = "東京駅"
+//                tripLog1.transportationRequirement = "自転車"
+//                tripLog1.costRequirement = 1000
+//                tripLog1.curfewRequirement = "16:00"
+//                tripLog1.tripPoint = 20
+//                tripLog1.tripComment = "楽しかった！"
+//                realm.add(tripLog1)
+//                
+//                
+//            }
+//            print("Initial data has been added to Realm.")
+//        } else {
+//            print("Initial data already exists in Realm.")
+//        }
+        
     }
 
     // MARK: UISceneSession Lifecycle

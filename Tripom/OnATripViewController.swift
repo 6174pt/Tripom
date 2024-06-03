@@ -29,9 +29,9 @@ class OnATripViewController: UIViewController {
             transportationRequirementLabel.text = nowTripRequirement.nowTransportationRequirement
             costRequirementLabel.text = String(nowTripRequirement.nowCostRequirement)
             curfewRequirementLabel.text = nowTripRequirement.nowCurfewRequirement
-                } else {
-                    
-                }
+        } else {
+            
+        }
         
         self.navigationItem.hidesBackButton = true
 
