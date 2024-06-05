@@ -17,8 +17,13 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
     let recordLaterButton: UIButton = UIButton()
     
     var animationView = LottieAnimationView()
+    
+    //    "今の旅の旅条件"を入れておく変数
+    var nowDestinationRequirement: String = ""
+    var nowTransportationRequirement: String = ""
+    var nowCostRequirement: Int = 0
+    var nowCurfewRequirement: String = ""
     let realm = try! Realm()
-    var rate: Float = 0
     
     var beforeTripPoints: Int = 0
     var nowTripPoints: Int = 0
@@ -52,6 +57,14 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
         if let nowTripData = NowTripData.first {
             nowTripPoints = beforeTripPoints + nowTripData.allTripPoint
             print("加算後のポイント", nowTripPoints)
+            //        あとで旅記録に追加するため'今の旅の旅条件(目的地)'を取得しておく
+            nowDestinationRequirement = nowTripData.nowDestinationRequirement
+            //        あとで旅記録に追加するため'今の旅の旅条件(交通手段)'を取得しておく
+            nowTransportationRequirement = nowTripData.nowTransportationRequirement
+            //        あとで旅記録に追加するため'今の旅の旅条件(費用)'を取得しておく
+            nowCostRequirement = nowTripData.nowCostRequirement
+            //        あとで旅記録に追加するため'今の旅の旅条件(帰宅時間)'を取得しておく
+            nowCurfewRequirement = nowTripData.nowCurfewRequirement
         } else {
             print("データモデルUserのデータがありません")
         }
@@ -98,95 +111,6 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
         shape.strokeEnd=0
         shape.lineCap = .round
         profileView.layer.addSublayer(shape)
-        
-//        if nowTripPoints >= ((tripLevel - 1) * 5 + 15) {
-////            レベルアップする場合
-//            print("Level Up")
-//            beforeRate = Float(beforeTripPoints) / Float((tripLevel - 1) * 5 + 15)
-//            
-//            let userData = realm.objects(User.self)
-//            if let user = userData.first {
-//                try! realm.write{
-//                    user.tripPoints = nowTripPoints
-//                }
-//                
-////                tripPointsがMaxのポイントを上回り続ける限りループ(円ゲージが一周回り切る間)
-//                while user.tripPoints >= ((user.tripLevel - 1) * 5 + 15) {
-//                    print("while")
-//                    //            円ゲージアニメーション
-//                    
-//                    shape.speed = 1.0
-//                    let animation1=CABasicAnimation(keyPath: "strokeEnd")
-//                    animation1.fromValue = beforeRate
-//                    animation1.toValue = 1.0
-//                    animation1.duration = 3.0
-//                    animation1.isRemovedOnCompletion = true
-//                    animation1.fillMode = .forwards
-//                    animation1.delegate = self
-//                    shape.add(animation1,forKey: "animation1")
-//                    
-//                    profileMessageLabel.text = "Lv. \(user.tripLevel + 1)"
-//                    
-//                    //        アニメーション
-//                    animationView = LottieAnimationView(name: "Animation - 1717424783266")
-//                    animationView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
-//                    animationView.contentMode = .scaleAspectFit
-//                    animationView.loopMode = .playOnce
-//                    animationView.play()
-//                    view.addSubview(animationView)
-//                    
-//                    try! realm.write{
-//                        user.tripPoints = user.tripPoints - ((user.tripLevel - 1) * 5 + 15)
-//                        user.tripLevel = user.tripLevel + 1
-//                    }
-//                    
-//                    beforeRate = 0
-//                    
-//                }
-//                
-////                tripPointsがMaxのポイントを初めて下回った時(円ゲージが回り切り終わったあと)
-//                print("Not Level Up But After Level Up")
-//                afterRate = Float(user.tripPoints) / Float((user.tripLevel - 1) * 5 + 15)
-//                //            円ゲージアニメーション
-//                shape.speed = 1.0
-//                let animation2=CABasicAnimation(keyPath: "strokeEnd")
-//                animation2.fromValue = beforeRate
-//                animation2.toValue = afterRate
-//                animation2.duration = 3.0
-//                animation2.isRemovedOnCompletion=false
-//                animation2.fillMode = .forwards
-//                shape.add(animation2,forKey: "animation2")
-//                
-//                
-//            } else {
-//                print("データモデルUserのデータがありません")
-//            }
-//                        
-//                } else {
-////            レベルアップしない場合
-//                    
-//            print("Not Level Up")
-//            beforeRate = Float(beforeTripPoints) / Float((tripLevel - 1) * 5 + 15)
-//            afterRate = Float(nowTripPoints) / Float((tripLevel - 1) * 5 + 15)
-//            
-//            let userData = realm.objects(User.self)
-//            if let user = userData.first {
-//                try! realm.write{
-//                    user.tripPoints = nowTripPoints
-//                }
-//            } else {
-//                print("データモデルUserのデータがありません")
-//            }
-////            円ゲージアニメーション
-//            shape.speed = 1.0
-//            let animation3=CABasicAnimation(keyPath: "strokeEnd")
-//            animation3.fromValue = beforeRate
-//            animation3.toValue = afterRate
-//            animation3.duration = 3.0
-//            animation3.isRemovedOnCompletion=false
-//            animation3.fillMode = .forwards
-//            shape.add(animation3,forKey: "animation3")
-//        }
         
 //        ボタンのサイズ
         let buttonWidth: CGFloat = self.view.frame.size.width * 3 / 4
@@ -309,13 +233,43 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
     }
     
     func tappedRecordLaterButton() {
-//        '旅を始める'画面に遷移
+        //        '旅を始める'画面に遷移
         print("tappedRecordLaterButton")
-        if let tabBarController = self.tabBarController {
-            tabBarController.selectedIndex = 1
-            self.navigationController?.popToRootViewController(animated: true)
-        } else {
-            print("No TabBarController found")
+        
+        print("add")
+        let existingTripLogsData = realm.objects(TripLog.self)
+        try! realm.write {
+            //            旅記録のデータモデルに"今の旅の旅条件"を代入
+            let tripLog = TripLog()
+            tripLog.destinationRequirement = nowDestinationRequirement
+            tripLog.transportationRequirement = nowTransportationRequirement
+            tripLog.costRequirement = nowCostRequirement
+            tripLog.curfewRequirement = nowCurfewRequirement
+            //            旅のコメント
+            //            tripLog.tripComment = commentTextField.text!
+            //            写真のURL
+            //            tripLog.photoURL = photoURL
+            realm.add(tripLog)
+            
+            let nowAddTripLogs = realm.objects(TripLog.self)
+            if let nowAddTripLog = nowAddTripLogs.last {
+                print("追加したやつ")
+                print(nowAddTripLog.destinationRequirement)
+                print(nowAddTripLog.transportationRequirement)
+                print(nowAddTripLog.costRequirement)
+                print(nowAddTripLog.curfewRequirement)
+                print(nowAddTripLog.tripComment)
+                print(nowAddTripLog.photoURL)
+            } else {
+                
+            }
+            
+            if let tabBarController = self.tabBarController {
+                tabBarController.selectedIndex = 1
+                self.navigationController?.popToRootViewController(animated: true)
+            } else {
+                print("No TabBarController found")
+            }
         }
     }
 
