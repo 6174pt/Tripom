@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class ProfileViewController: UIViewController {
     
@@ -14,6 +15,57 @@ class ProfileViewController: UIViewController {
     let userNameLabel: UILabel = UILabel()
     let userIDLabel: UILabel = UILabel()
     let shareProfileButton: UIButton = UIButton()
+    
+    let realm = try! Realm()
+    var rate: Float = 0
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        userのプロフィールを取得
+        let userData = realm.objects(User.self)
+        if let user = userData.first {
+            tripLevelLabel.text = "Lv. \(user.tripLevel)"
+            userNameLabel.text = user.userName
+            userIDLabel.text = user.userID
+            
+//            現在の旅ポイントが今の旅レベルのMaxポイントを上回っていたら
+            if user.tripPoints >= ((user.tripLevel - 1) * 5 + 15) {
+                try! realm.write{
+                    user.tripPoints = user.tripPoints - ((user.tripLevel - 1) * 5 + 15)
+                    user.tripLevel = user.tripLevel + 1
+                }
+            }
+            
+//            円ゲージの割合
+            rate = Float(user.tripPoints) / Float((user.tripLevel - 1) * 5 + 15)
+        } else {
+            
+        }
+        
+        let iconImageSize: CGFloat = view.frame.size.width * 1 / 3
+        let iconImageView = UIImageView()
+        
+//        円ゲージ
+        let ciclePath=UIBezierPath(arcCenter: CGPoint(x: view.frame.size.width / 2, y: view.frame.size.width / 2), radius: iconImageSize / 2 + 10, startAngle: -(.pi/2), endAngle: CGFloat(rate) * 2 * .pi - (.pi/2), clockwise: true)
+        let shape = CAShapeLayer()
+        shape.path=ciclePath.cgPath
+        shape.lineWidth=5
+        shape.strokeColor = UIColor(red: 242 / 255, green: 223 / 255, blue: 154 / 255, alpha: 1.0).cgColor
+        shape.fillColor = UIColor.clear.cgColor
+        shape.strokeEnd=0
+        shape.lineCap = .round
+        profileView.layer.addSublayer(shape)
+        
+//        円ゲージアニメーション
+        shape.speed = 1.0
+        let animation=CABasicAnimation(keyPath: "strokeEnd")
+        animation.fromValue = 1.0
+        animation.toValue = 1.0
+        animation.duration = 3.0
+        animation.isRemovedOnCompletion=false
+        animation.fillMode = .forwards
+        shape.add(animation,forKey: "animation")
+        
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,31 +84,13 @@ class ProfileViewController: UIViewController {
         iconImageView.layer.masksToBounds = true
         profileView.addSubview(iconImageView)
         
-//        円ゲージ
-        let ciclePath=UIBezierPath(arcCenter: CGPoint(x: view.frame.size.width / 2, y: view.frame.size.width / 2), radius: iconImageSize / 2 + 10, startAngle: -(.pi/2), endAngle: .pi/2*3, clockwise: true)
-        let shape = CAShapeLayer()
-        shape.path=ciclePath.cgPath
-        shape.lineWidth=5
-        shape.strokeColor = UIColor(red: 242 / 255, green: 223 / 255, blue: 154 / 255, alpha: 1.0).cgColor
-        shape.fillColor = UIColor.clear.cgColor
-        shape.strokeEnd=0
-        shape.lineCap = .round
-        profileView.layer.addSublayer(shape)
+
         
-//        円ゲージアニメーション
-        shape.speed = 1.0
-        let animation=CABasicAnimation(keyPath: "strokeEnd")
-        animation.fromValue = 0.8
-        animation.toValue = 0.8
-        animation.duration = 3.0
-        animation.isRemovedOnCompletion=false
-        animation.fillMode = .forwards
-        shape.add(animation,forKey: "animation")
+
         
 //        旅レベル
         tripLevelLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width / 2 + iconImageSize / 2, width: iconImageSize + 50 , height: iconImageSize / 2)
         tripLevelLabel.textAlignment = NSTextAlignment.center
-        tripLevelLabel.text = "Lv. 5"
 //        tripLevelLabel.text = "Lv. \(nowTripLevel)"
         tripLevelLabel.font = UIFont.boldSystemFont(ofSize: 40.0)
         profileView.addSubview(tripLevelLabel)
@@ -64,14 +98,12 @@ class ProfileViewController: UIViewController {
 //        ユーザー名
         userNameLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width / 2 + iconImageSize / 2 + iconImageSize / 2, width: iconImageSize + 50 , height: iconImageSize / 4)
         userNameLabel.textAlignment = NSTextAlignment.center
-        userNameLabel.text = "Honoka Nishiyama"
 //        userNameLabel.text = "\(userName)"
         profileView.addSubview(userNameLabel)
         
 //        ユーザーID
         userIDLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width / 2 + iconImageSize / 2 + iconImageSize / 2 + iconImageSize / 4, width: iconImageSize + 50 , height: iconImageSize / 4)
         userIDLabel.textAlignment = NSTextAlignment.center
-        userIDLabel.text = "@honohonopi"
 //        userIDLabel.text = "\(userID)"
         userIDLabel.textColor = UIColor.gray
         profileView.addSubview(userIDLabel)
@@ -96,7 +128,7 @@ class ProfileViewController: UIViewController {
     
     func tappedShareProfileButton() {
         print("tappedShareProfileButton")
-        let image = profileView.image
+        let image = profileView.image(withRate: rate)
         let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         self.present(activityVC, animated: true, completion: nil)
     }
@@ -104,15 +136,15 @@ class ProfileViewController: UIViewController {
 }
 
 extension UIView {
-    var image: UIImage {
+    func image(withRate rate: Float) -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: bounds.size)
                 return renderer.image { ctx in
                     // 既存の描画内容をキャプチャ
                     layer.render(in: ctx.cgContext)
-                    
+                    print(rate)
                     // ここに円ゲージを描画
                     let iconImageSize: CGFloat = bounds.size.width * 1 / 3
-                    let circlePath = UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2, y: bounds.size.width / 2), radius: iconImageSize / 2 + 10, startAngle: -(.pi/2), endAngle: .pi/2, clockwise: true)
+                    let circlePath = UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2, y: bounds.size.width / 2), radius: iconImageSize / 2 + 10, startAngle: -(.pi/2), endAngle: CGFloat(rate) * 2 * .pi - (.pi/2), clockwise: true)
                     
                     ctx.cgContext.setLineWidth(5)
                     ctx.cgContext.setStrokeColor(UIColor(red: 242 / 255, green: 223 / 255, blue: 154 / 255, alpha: 1.0).cgColor)

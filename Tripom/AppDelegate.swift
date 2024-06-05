@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let config = Realm.Configuration(schemaVersion: 7)
+        let config = Realm.Configuration(schemaVersion: 8)
         Realm.Configuration.defaultConfiguration = config
         
         setupInitialData()
@@ -147,7 +147,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             print("Initial data already exists in Realm.")
         }
-                
+          
+        //        User情報
+        //        すでにデータが存在するか確認
+        let existingUserData = realm.objects(User.self)
+        if existingUserData.isEmpty {
+            try! realm.write {
+                let user = User()
+                user.userID = "userID"
+                user.userName = "userName"
+                user.tripPoints = 0
+                user.tripLevel = 1
+                realm.add(user)
+            }
+            print("Initial data has been added to Realm.")
+        } else {
+            print("Initial data already exists in Realm.")
+        }
+        
         //        旅の記録
         //        すでにデータが存在するか確認
 //        let existingTripLogData = realm.objects(TripLog.self)

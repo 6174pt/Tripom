@@ -12,6 +12,7 @@
 		552127A12C0E06320019021E /* Animation - 1717423675691.json in Resources */ = {isa = PBXBuildFile; fileRef = 552127A02C0E06320019021E /* Animation - 1717423675691.json */; };
 		552127A32C0E08810019021E /* Animation - 1717423936004.json in Resources */ = {isa = PBXBuildFile; fileRef = 552127A22C0E08810019021E /* Animation - 1717423936004.json */; };
 		552127A52C0E0A2D0019021E /* Animation - 1717424783266.json in Resources */ = {isa = PBXBuildFile; fileRef = 552127A42C0E0A2D0019021E /* Animation - 1717424783266.json */; };
+		552127A72C0E173A0019021E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552127A62C0E173A0019021E /* User.swift */; };
 		5584351B2C04E5BF0092474A /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584351A2C04E5BF0092474A /* ProfileViewController.swift */; };
 		558435202C0537D30092474A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5584351F2C0537D30092474A /* RealmSwift */; };
 		558435222C0538810092474A /* DestinationRequirements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558435212C0538810092474A /* DestinationRequirements.swift */; };
@@ -63,6 +64,7 @@
 		552127A02C0E06320019021E /* Animation - 1717423675691.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Animation - 1717423675691.json"; sourceTree = "<group>"; };
 		552127A22C0E08810019021E /* Animation - 1717423936004.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Animation - 1717423936004.json"; sourceTree = "<group>"; };
 		552127A42C0E0A2D0019021E /* Animation - 1717424783266.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Animation - 1717424783266.json"; sourceTree = "<group>"; };
+		552127A62C0E173A0019021E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5584351A2C04E5BF0092474A /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		558435212C0538810092474A /* DestinationRequirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationRequirements.swift; sourceTree = "<group>"; };
 		558435262C0568190092474A /* TransportationRequirements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransportationRequirements.swift; sourceTree = "<group>"; };
@@ -137,6 +139,7 @@
 				558711E12BF9D93C006DCB29 /* Assets.xcassets */,
 				558711E32BF9D93C006DCB29 /* LaunchScreen.storyboard */,
 				558711E62BF9D93C006DCB29 /* Info.plist */,
+				552127A62C0E173A0019021E /* User.swift */,
 				5584351A2C04E5BF0092474A /* ProfileViewController.swift */,
 				552127912C0DAD480019021E /* customProfileViewController.swift */,
 				5598524B2BF9E3AD001A9D7F /* TabBarController.swift */,
@@ -270,6 +273,7 @@
 				558711D92BF9D93A006DCB29 /* AppDelegate.swift in Sources */,
 				5584351B2C04E5BF0092474A /* ProfileViewController.swift in Sources */,
 				5598524C2BF9E3AD001A9D7F /* TabBarController.swift in Sources */,
+				552127A72C0E173A0019021E /* User.swift in Sources */,
 				558711DB2BF9D93A006DCB29 /* SceneDelegate.swift in Sources */,
 				558435332C05AB360092474A /* TripLogsViewController.swift in Sources */,
 				55F503722C084AC100A8CE9A /* TripPhotos.swift in Sources */,
