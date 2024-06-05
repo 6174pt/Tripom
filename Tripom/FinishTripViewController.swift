@@ -13,8 +13,6 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
 
     let profileView: UIView = UIView()
     let profileMessageLabel: UILabel = UILabel()
-    let confettiView: UIView = UIView()
-    var confettiLayer = CAEmitterLayer()
     let recordNowButton: UIButton = UIButton()
     let recordLaterButton: UIButton = UIButton()
     
@@ -23,10 +21,14 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
     var rate: Float = 0
     
     var beforeTripPoints: Int = 0
-    var afterTripPoints: Int = 0
-    var beforeTripLevel: Int = 0
+    var nowTripPoints: Int = 0
+    var tripLevel: Int = 0
     var beforeRate: Float = 0
     var afterRate: Float = 0
+    
+    var shape = CAShapeLayer()
+    var user: User? = nil // 保存するためのUserインスタンス
+    var isLevelUp = false // レベルアップのフラグ
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -39,18 +41,28 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
         let userData = realm.objects(User.self)
         if let user = userData.first {
             beforeTripPoints = user.tripPoints
-            print("beforeTripPoints", beforeTripPoints)
-            beforeTripLevel = user.tripLevel
+            print("加算前のポイント", beforeTripPoints)
+            tripLevel = user.tripLevel
+            print("加算前のレベル(データモデル内)", user.tripLevel)
         } else {
-            
+            print("データモデルUserのデータがありません")
         }
         
         let NowTripData = realm.objects(NowTripRequirements.self)
         if let nowTripData = NowTripData.first {
-            afterTripPoints = beforeTripPoints + nowTripData.allTripPoint
-            print("afterTripPoints", afterTripPoints)
+            nowTripPoints = beforeTripPoints + nowTripData.allTripPoint
+            print("加算後のポイント", nowTripPoints)
         } else {
-            
+            print("データモデルUserのデータがありません")
+        }
+        
+        if let user = userData.first {
+            try! realm.write{
+                user.tripPoints = nowTripPoints
+                print("加算後のポイント(データモデル内)", user.tripPoints)
+            }
+        } else {
+            print("データモデルUserのデータがありません")
         }
         
 //        ナビゲーションバーの非表示
@@ -78,105 +90,103 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
         
 //        円ゲージ
         let ciclePath=UIBezierPath(arcCenter: view.center, radius: iconImageSize / 2 + 15, startAngle: -(.pi/2), endAngle: (.pi/2) * 3, clockwise: true)
-        let shape=CAShapeLayer()
-        shape.path=ciclePath.cgPath
-        shape.lineWidth=8
+//        let shape = CAShapeLayer()
+        shape.path = ciclePath.cgPath
+        shape.lineWidth = 5
         shape.strokeColor = UIColor(red: 242 / 255, green: 223 / 255, blue: 154 / 255, alpha: 1.0).cgColor
         shape.fillColor = UIColor.clear.cgColor
         shape.strokeEnd=0
         shape.lineCap = .round
         profileView.layer.addSublayer(shape)
         
-        if afterTripPoints >= ((beforeTripLevel - 1) * 5 + 15) {
-            print("Level Up")
-//            レベルアップする場合
-            beforeRate = Float(beforeTripPoints) / Float((beforeTripLevel - 1) * 5 + 15)
-            
-            let userData = realm.objects(User.self)
-            if let user = userData.first {
-                try! realm.write{
-                    user.tripPoints = afterTripPoints
-                }
-                
-                
-                
-//                tripPointsがMaxのポイントを上回り続ける限りループ(円ゲージが一周回り切る間)
-                while user.tripPoints >= ((user.tripLevel - 1) * 5 + 15) {
-                    print("while")
-                    //            円ゲージアニメーション
-                    
-                    shape.speed = 1.0
-                    let animation1=CABasicAnimation(keyPath: "strokeEnd")
-                    animation1.fromValue = beforeRate
-                    animation1.toValue = 1.0
-                    animation1.duration = 3.0
-                    animation1.isRemovedOnCompletion = true
-                    animation1.fillMode = .forwards
-                    animation1.delegate = self
-                    shape.add(animation1,forKey: "animation1")
-                    
-                    profileMessageLabel.text = "Lv. \(user.tripLevel + 1)"
-                    
-                    //        アニメーション
-                    animationView = LottieAnimationView(name: "Animation - 1717424783266")
-                    animationView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
-                    animationView.contentMode = .scaleAspectFit
-                    animationView.loopMode = .playOnce
-                    animationView.play()
-                    view.addSubview(animationView)
-                    
-                    try! realm.write{
-                        user.tripPoints = user.tripPoints - ((user.tripLevel - 1) * 5 + 15)
-                        user.tripLevel = user.tripLevel + 1
-                    }
-                    
-                    beforeRate = 0
-                    
-                }
-                
-//                tripPointsがMaxのポイントを初めて下回った時(円ゲージが回り切り終わったあと)
-                print("Not Level Up But After Level Up")
-                afterRate = Float(user.tripPoints) / Float((user.tripLevel - 1) * 5 + 15)
-                //            円ゲージアニメーション
-                shape.speed = 1.0
-                let animation2=CABasicAnimation(keyPath: "strokeEnd")
-                animation2.fromValue = beforeRate
-                animation2.toValue = afterRate
-                animation2.duration = 3.0
-                animation2.isRemovedOnCompletion=false
-                animation2.fillMode = .forwards
-                shape.add(animation2,forKey: "animation2")
-                
-                
-            } else {
-                print("データモデルUserのデータがありません")
-            }
-                        
-                } else {
-//            レベルアップしない場合
-                    
-                    print("Not Level Up")
-            beforeRate = Float(beforeTripPoints) / Float((beforeTripLevel - 1) * 5 + 15)
-            afterRate = Float(afterTripPoints) / Float((beforeTripLevel - 1) * 5 + 15)
-            
-            let userData = realm.objects(User.self)
-            if let user = userData.first {
-                try! realm.write{
-                    user.tripPoints = afterTripPoints
-                }
-            } else {
-                print("データモデルUserのデータがありません")
-            }
-//            円ゲージアニメーション
-            shape.speed = 1.0
-            let animation3=CABasicAnimation(keyPath: "strokeEnd")
-            animation3.fromValue = beforeRate
-            animation3.toValue = afterRate
-            animation3.duration = 3.0
-            animation3.isRemovedOnCompletion=false
-            animation3.fillMode = .forwards
-            shape.add(animation3,forKey: "animation3")
-        }
+//        if nowTripPoints >= ((tripLevel - 1) * 5 + 15) {
+////            レベルアップする場合
+//            print("Level Up")
+//            beforeRate = Float(beforeTripPoints) / Float((tripLevel - 1) * 5 + 15)
+//            
+//            let userData = realm.objects(User.self)
+//            if let user = userData.first {
+//                try! realm.write{
+//                    user.tripPoints = nowTripPoints
+//                }
+//                
+////                tripPointsがMaxのポイントを上回り続ける限りループ(円ゲージが一周回り切る間)
+//                while user.tripPoints >= ((user.tripLevel - 1) * 5 + 15) {
+//                    print("while")
+//                    //            円ゲージアニメーション
+//                    
+//                    shape.speed = 1.0
+//                    let animation1=CABasicAnimation(keyPath: "strokeEnd")
+//                    animation1.fromValue = beforeRate
+//                    animation1.toValue = 1.0
+//                    animation1.duration = 3.0
+//                    animation1.isRemovedOnCompletion = true
+//                    animation1.fillMode = .forwards
+//                    animation1.delegate = self
+//                    shape.add(animation1,forKey: "animation1")
+//                    
+//                    profileMessageLabel.text = "Lv. \(user.tripLevel + 1)"
+//                    
+//                    //        アニメーション
+//                    animationView = LottieAnimationView(name: "Animation - 1717424783266")
+//                    animationView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+//                    animationView.contentMode = .scaleAspectFit
+//                    animationView.loopMode = .playOnce
+//                    animationView.play()
+//                    view.addSubview(animationView)
+//                    
+//                    try! realm.write{
+//                        user.tripPoints = user.tripPoints - ((user.tripLevel - 1) * 5 + 15)
+//                        user.tripLevel = user.tripLevel + 1
+//                    }
+//                    
+//                    beforeRate = 0
+//                    
+//                }
+//                
+////                tripPointsがMaxのポイントを初めて下回った時(円ゲージが回り切り終わったあと)
+//                print("Not Level Up But After Level Up")
+//                afterRate = Float(user.tripPoints) / Float((user.tripLevel - 1) * 5 + 15)
+//                //            円ゲージアニメーション
+//                shape.speed = 1.0
+//                let animation2=CABasicAnimation(keyPath: "strokeEnd")
+//                animation2.fromValue = beforeRate
+//                animation2.toValue = afterRate
+//                animation2.duration = 3.0
+//                animation2.isRemovedOnCompletion=false
+//                animation2.fillMode = .forwards
+//                shape.add(animation2,forKey: "animation2")
+//                
+//                
+//            } else {
+//                print("データモデルUserのデータがありません")
+//            }
+//                        
+//                } else {
+////            レベルアップしない場合
+//                    
+//            print("Not Level Up")
+//            beforeRate = Float(beforeTripPoints) / Float((tripLevel - 1) * 5 + 15)
+//            afterRate = Float(nowTripPoints) / Float((tripLevel - 1) * 5 + 15)
+//            
+//            let userData = realm.objects(User.self)
+//            if let user = userData.first {
+//                try! realm.write{
+//                    user.tripPoints = nowTripPoints
+//                }
+//            } else {
+//                print("データモデルUserのデータがありません")
+//            }
+////            円ゲージアニメーション
+//            shape.speed = 1.0
+//            let animation3=CABasicAnimation(keyPath: "strokeEnd")
+//            animation3.fromValue = beforeRate
+//            animation3.toValue = afterRate
+//            animation3.duration = 3.0
+//            animation3.isRemovedOnCompletion=false
+//            animation3.fillMode = .forwards
+//            shape.add(animation3,forKey: "animation3")
+//        }
         
 //        ボタンのサイズ
         let buttonWidth: CGFloat = self.view.frame.size.width * 3 / 4
@@ -206,6 +216,8 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
         }), for: .touchUpInside)
         view.addSubview(recordLaterButton)
         
+        pointUp()
+        
 //        画面遷移後の流れ
 //        ”お疲れ様です！\n旅は楽しめましたか？”
 //        "旅ポイント + \(addedTripPoint)pt"ふわっと表示させたい
@@ -213,8 +225,84 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
         
     }
     
+    func pointUp(){
+        print("PointUp")
+        if nowTripPoints >= ((tripLevel - 1) * 5 + 15) {
+            //            レベルアップする場合
+            print("Level Up")
+            beforeRate = Float(beforeTripPoints) / Float((tripLevel - 1) * 5 + 15)
+            shape.speed = 1.0
+            let animation1=CABasicAnimation(keyPath: "strokeEnd")
+            animation1.fromValue = beforeRate
+            animation1.toValue = 1.0
+            animation1.duration = 3.0
+            animation1.isRemovedOnCompletion = false
+            animation1.fillMode = .forwards
+            animation1.delegate = self
+            shape.add(animation1,forKey: "animation1")
+            
+        } else {
+            //            レベルアップしない場合
+            print("Not Level Up")
+            
+            beforeRate = Float(beforeTripPoints) / Float((tripLevel - 1) * 5 + 15)
+            afterRate = Float(nowTripPoints) / Float((tripLevel - 1) * 5 + 15)
+            
+            shape.speed = 1.0
+            let animation2=CABasicAnimation(keyPath: "strokeEnd")
+            animation2.fromValue = beforeRate
+            animation2.toValue = afterRate
+            animation2.duration = 3.0
+            animation2.isRemovedOnCompletion=false
+            animation2.fillMode = .forwards
+            shape.add(animation2,forKey: "animation2")
+            
+        }
+    }
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        print("animationdidstop")
+        if anim == shape.animation(forKey: "animation1") {
+            print("animation1didstop")
+            //        レベルアップ後のレベルの表示
+            profileMessageLabel.text = "Lv. \(tripLevel + 1)"
+            
+            //        アニメーション
+            animationView = LottieAnimationView(name: "Animation - 1717424783266")
+            //        ボタンのサイズ
+            let buttonWidth: CGFloat = self.view.frame.size.width * 3 / 4
+            let buttonHeight: CGFloat = buttonWidth * 1 / 5
+            animationView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height - buttonHeight * 2 - 150 / 2)
+            animationView.contentMode = .scaleAspectFit
+            animationView.loopMode = .playOnce
+            animationView.play()
+            view.addSubview(animationView)
+            
+            nowTripPoints = nowTripPoints - ((tripLevel - 1) * 5 + 15)
+            tripLevel = tripLevel + 1
+            beforeTripPoints = 0
+            
+            let userData = realm.objects(User.self)
+            if let user = userData.first {
+                try! realm.write{
+                    user.tripPoints = user.tripPoints - ((user.tripLevel - 1) * 5 + 15)
+                    print("加算後のポイント(データモデル内)", user.tripPoints)
+                    user.tripLevel = user.tripLevel + 1
+                    print("加算後のレベル(データモデル内)", user.tripLevel)
+                }
+            } else {
+                print("データモデルUserのデータがありません")
+            }
+            
+            //        再帰
+            pointUp()
+        }
+        
+    }
+    
     func tappedRecordNowButton(){
 //        旅記録編集画面に遷移
+        print("tappedRecordNowButton")
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecordTripLogViewController") as! RecordTripLogViewController
         self.navigationController?.pushViewController(vc, animated: true)
         
@@ -222,6 +310,7 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
     
     func tappedRecordLaterButton() {
 //        '旅を始める'画面に遷移
+        print("tappedRecordLaterButton")
         if let tabBarController = self.tabBarController {
             tabBarController.selectedIndex = 1
             self.navigationController?.popToRootViewController(animated: true)

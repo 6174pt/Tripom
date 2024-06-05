@@ -64,7 +64,7 @@ class TripRequirementsViewController: UIViewController {
 //        ランダムな旅条件を出力
 //        目的地
         if let randomDestinationRequirements = tripDestinationRequirement.randomElement() {
-            print("destination: \(randomDestinationRequirements.destinationRequirement), tripPoint: \(randomDestinationRequirements.tripPoint)")
+//            print("destination: \(randomDestinationRequirements.destinationRequirement), tripPoint: \(randomDestinationRequirements.tripPoint)")
             destinationRequirementLabel.text = randomDestinationRequirements.destinationRequirement
             nowDestinationRequirement = randomDestinationRequirements.destinationRequirement
             nowDestinationRequirementTripPoint = randomDestinationRequirements.tripPoint
@@ -74,7 +74,7 @@ class TripRequirementsViewController: UIViewController {
         
 //        交通手段
         if let randomTransportationRequirements = tripTransportationRequirement.randomElement() {
-            print("destination: \(randomTransportationRequirements.transportationRequirement), tripPoint: \(randomTransportationRequirements.tripPoint)")
+//            print("destination: \(randomTransportationRequirements.transportationRequirement), tripPoint: \(randomTransportationRequirements.tripPoint)")
             transportationRequirementLabel.text = randomTransportationRequirements.transportationRequirement
             nowTransportationRequirement = randomTransportationRequirements.transportationRequirement
             nowTransportationRequirementTripPoint = randomTransportationRequirements.tripPoint
@@ -84,7 +84,7 @@ class TripRequirementsViewController: UIViewController {
         
 //        費用
         if let randomCostRequirements = tripCostRequirement.randomElement() {
-            print("destination: \(randomCostRequirements.costRequirement), tripPoint: \(randomCostRequirements.tripPoint)")
+//            print("destination: \(randomCostRequirements.costRequirement), tripPoint: \(randomCostRequirements.tripPoint)")
             costRequirementLabel.text = String(randomCostRequirements.costRequirement)
             nowCostRequirement = randomCostRequirements.costRequirement
             nowCostRequirementTripPoint = randomCostRequirements.tripPoint
@@ -94,7 +94,7 @@ class TripRequirementsViewController: UIViewController {
         
 //        帰宅時間
         if let randomCurfewRequirements = tripCurfewRequirement.randomElement() {
-            print("destination: \(randomCurfewRequirements.curfewRequirement), tripPoint: \(randomCurfewRequirements.tripPoint)")
+//            print("destination: \(randomCurfewRequirements.curfewRequirement), tripPoint: \(randomCurfewRequirements.tripPoint)")
             curfewRequirementLabel.text = randomCurfewRequirements.curfewRequirement
             nowCurfewRequirement = randomCurfewRequirements.curfewRequirement
             nowCurfewRequirementTripPoint = randomCurfewRequirements.tripPoint
