@@ -11,7 +11,7 @@ import PhotosUI
 
 //Realm：データの取得(NowTripRequirements,),データの追加(TripLog,TripPhotos)
 //旅の記録を編集する画面
-class RecordTripLogViewController: UIViewController, PHPickerViewControllerDelegate {
+class RecordTripLogViewController: UIViewController, PHPickerViewControllerDelegate, UICollectionViewDataSource {
     
     @IBOutlet var destinationRequirementLabel: UILabel!
     @IBOutlet var transportationRequirementLabel: UILabel!
@@ -20,6 +20,10 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
     @IBOutlet var commentTextField: UITextField!
     @IBOutlet var addPhotoButton: UIButton!
     @IBOutlet var photoImage: UIImageView!
+    
+    var tripLogs: Results<TripLog>!
+    var photoArray: [UIImage] = []
+    var photoURLArray: List<String> = List<String>()
     
     let saveTripLogButton: UIButton = UIButton()
     var photoURL: String = ""
@@ -70,14 +74,25 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
         //        ナビゲーションバーの非表示
         self.navigationItem.hidesBackButton = true
         
-        //        選択した写真を表示するCollectionView
-        //        collectionView.dataSource = self
-        //        collectionView.register(UINib(nibName: "TripLogsPhotosCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TripLogsPhotosCollectionViewCell")
-        //        collectionView.register(UINib(nibName: "AddPhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AddPhotoCollectionViewCell")
-        //        collectionView.backgroundColor = UIColor.gray
-        //
-        //        tripLogs = Array(realm.objects(TripLog.self))
-        //        collectionView.reloadData()
+        //                選択した写真を表示するCollectionView
+        collectionView.dataSource = self
+        collectionView.register(UINib(nibName: "TripLogsPhotosCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TripLogsPhotosCollectionViewCell")
+        collectionView.register(UINib(nibName: "AddPhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AddPhotoCollectionViewCell")
+        collectionView.backgroundColor = UIColor.gray
+        
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.estimatedItemSize = .zero // 自動サイズ調整を無効にする
+        }
+        let layout = UICollectionViewFlowLayout()
+        layout.minimumInteritemSpacing = 10
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: (self.view.frame.width - 30) / 3, height:(self.view.frame.width - 30 ) * 1.5 / 3 )
+        layout.sectionInset = UIEdgeInsets(top: 20,left: 10,bottom: 0,right: 10)
+        collectionView.collectionViewLayout = layout
+        
+        
+        //                tripLogs = Array(realm.objects(TripLog.self))
+                collectionView.reloadData()
         
         //        コメント用のTextFieldの最初に透けて見えるメッセージ
         commentTextField.placeholder = "旅で感じたことを記しておきましょう！"
@@ -112,21 +127,21 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
             //            旅のコメント
             tripLog.tripComment = commentTextField.text!
             //            写真のURL
-            tripLog.photoURL = photoURL
+            tripLog.photoURLs = photoURLArray
             realm.add(tripLog)
             
-            let nowAddTripLogs = realm.objects(TripLog.self)
-            if let nowAddTripLog = nowAddTripLogs.last {
-                print("追加したやつ")
-                print(nowAddTripLog.destinationRequirement)
-                print(nowAddTripLog.transportationRequirement)
-                print(nowAddTripLog.costRequirement)
-                print(nowAddTripLog.curfewRequirement)
-                print(nowAddTripLog.tripComment)
-                print(nowAddTripLog.photoURL)
-            } else {
-                
-            }
+//            let nowAddTripLogs = realm.objects(TripLog.self)
+//            if let nowAddTripLog = nowAddTripLogs.last {
+//                print("追加したやつ")
+//                print(nowAddTripLog.destinationRequirement)
+//                print(nowAddTripLog.transportationRequirement)
+//                print(nowAddTripLog.costRequirement)
+//                print(nowAddTripLog.curfewRequirement)
+//                print(nowAddTripLog.tripComment)
+//                print(nowAddTripLog.photoURLs)
+//            } else {
+//                
+//            }
             
         }
         
@@ -141,32 +156,33 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
     }
     
     //    旅記録内の写真をCollectionViewで表示
-    //    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    //        return tripLogs[section].photos.count + 1  // プラス1は「写真を追加」ボタンのため
-    //    }
-    //
-    //    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    //        if indexPath.row == 0 {
-    //            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddPhotoCollectionViewCell", for: indexPath) as! AddPhotoCollectionViewCell
-    //            cell.addPhotoButton.addTarget(self, action: #selector(tappedAddPhotoButton(_:)), for: .touchUpInside)
-    //            return cell
-    //        } else {
-    //            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TripLogsPhotosCollectionViewCell", for: indexPath) as! TripLogsPhotosCollectionViewCell
-    //            let tripLog = tripLogs[indexPath.section]
-    //            let photo = tripLog.photos[indexPath.row - 1]
-    //            cell.setupCell(photo: photo)
-    //            return cell
-    //        }
-    //    }
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            return photoArray.count + 1  // プラス1は「写真を追加」ボタンのため
+        }
     
-    @IBAction func tappedAddPhotoButton() {
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            if indexPath.row == 0 {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddPhotoCollectionViewCell", for: indexPath) as! AddPhotoCollectionViewCell
+                cell.addPhotoButton.addTarget(self, action: #selector(tappedAddPhotoButton), for: .touchUpInside)
+                return cell
+            } else {
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TripLogsPhotosCollectionViewCell", for: indexPath) as! TripLogsPhotosCollectionViewCell
+//                let tripLog = tripLogs[indexPath.section]
+//                let photo = tripLog.photoURLs[indexPath.row - 1]
+//                cell.setupCell(photo: photoURLs)
+                cell.tripPhotosImageView.image = photoArray[indexPath.item - 1]
+                return cell
+            }
+        }
+    
+    @objc func tappedAddPhotoButton() {
         //            PHPickerの表示
         var configuration = PHPickerConfiguration()
         //            PHPickerで取得できるメディアの種類を画像に限定
         let filter = PHPickerFilter.images
         configuration.filter = filter
         //            PHPickerで取得できる画像の数を(とりあえず)一枚に限定
-        configuration.selectionLimit = 1
+//        configuration.selectionLimit = 1
         
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
@@ -184,7 +200,8 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
                 if let image = object as? UIImage {
                     
                     DispatchQueue.main.async {
-                        self.photoImage.image = image
+                        self.photoArray.append(image)
+                        self.collectionView.reloadData()
                     }
                     let imageName = UUID().uuidString + ".jpeg"// ユニークな画像名を生成
                     
@@ -204,6 +221,7 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
                         }
                         print("fileURL", fileURL)
                         photoURL = fileURL.absoluteString
+                        self.photoURLArray.append(photoURL)
                     }
                 }
             }

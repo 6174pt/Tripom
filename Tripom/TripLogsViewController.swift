@@ -56,10 +56,10 @@ class TripLogsViewController: UIViewController, UICollectionViewDataSource, UICo
         cell.layer.cornerRadius = 10
         cell.backgroundColor = UIColor.systemGray6
         print("tripLog.photoURL")
-        print(tripLog.photoURL)
+//        print(tripLog.photoURL)
         
 //        取得したデータを元にcellを編集する
-        cell.setupCell(tripDate: "2024/05/09", tripSpot: tripLog.destinationRequirement, imageName: tripLog.photoURL)
+        cell.setupCell(tripDate: "2024/05/09", tripSpot: tripLog.destinationRequirement, imageName: tripLog.photoURLs.first ?? "")
         return cell
     }
     

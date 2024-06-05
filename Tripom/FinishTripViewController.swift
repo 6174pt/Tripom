@@ -259,7 +259,7 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
                 print(nowAddTripLog.costRequirement)
                 print(nowAddTripLog.curfewRequirement)
                 print(nowAddTripLog.tripComment)
-                print(nowAddTripLog.photoURL)
+                print(nowAddTripLog.photoURLs)
             } else {
                 
             }

@@ -32,7 +32,7 @@ class TripLogViewController: UIViewController {
         curfewRequirementLabel.text = tripLog.curfewRequirement
         tripCommentLabel.text = tripLog.tripComment
         
-        if let fileURL = URL(string: tripLog.photoURL) {
+        if let fileURL = URL(string: tripLog.photoURLs.first ?? "") {
             // ファイルパスを取得
             let filePath = fileURL.path
             print("filePath", filePath)

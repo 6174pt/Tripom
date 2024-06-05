@@ -19,5 +19,6 @@ class TripLog: Object {
 //    コメント
     @Persisted var tripComment: String = ""
 //    写真
-    @Persisted var photoURL: String = ""
+//    @Persisted var photoURL: String = ""
+    @Persisted var photoURLs: List<String> = List<String>()
 }
