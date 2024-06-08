@@ -142,19 +142,23 @@ class StartTripViewController: UIViewController {
             self.startButton.setTitle("", for: .normal)
             self.startButton.layoutIfNeeded()
         }, completion: { (_) in
-//            ボタンの拡大が終わったらroulletViewが回転する
-            UIView.animate(withDuration: 1.5, delay: 1, animations: {
-                self.rouletteView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-            }, completion: { (_) in
-//                ルーレットの回転が終わったら次の画面に遷移する
-                let vc = self.storyboard?.instantiateViewController(withIdentifier: "TripRequirementsViewController") as! TripRequirementsViewController
-                self.navigationController?.pushViewController(vc, animated: true)
-            })
+            self.rotateRoulette()
         })
         
         
         
         
+    }
+    
+    func rotateRoulette() {
+        UIView.animate(withDuration: 1.5, delay: 0, options: [.curveLinear], animations: {
+            // ルーレットを1回転させる
+            self.rouletteView.transform = self.rouletteView.transform.rotated(by: CGFloat.pi)
+        }, completion: { (_) in
+            // アニメーションが終了したら次の画面に遷移する
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "TripRequirementsViewController") as! TripRequirementsViewController
+            self.navigationController?.pushViewController(vc, animated: true)
+        })
     }
     
 }
