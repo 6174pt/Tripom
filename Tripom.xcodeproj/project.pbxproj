@@ -37,6 +37,8 @@
 		559852502BF9F6CB001A9D7F /* TripRequirementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598524F2BF9F6CB001A9D7F /* TripRequirementsViewController.swift */; };
 		55D256A62BFD7C5200F4D1EA /* OnATripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D256A52BFD7C5200F4D1EA /* OnATripViewController.swift */; };
 		55D256AA2BFD81E100F4D1EA /* FinishTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55D256A92BFD81E100F4D1EA /* FinishTripViewController.swift */; };
+		55EA8AC52C10C56A0023AFB0 /* TripLogPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55EA8AC32C10C56A0023AFB0 /* TripLogPhotosCollectionViewCell.swift */; };
+		55EA8AC62C10C56A0023AFB0 /* TripLogPhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55EA8AC42C10C56A0023AFB0 /* TripLogPhotosCollectionViewCell.xib */; };
 		55F5036F2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F5036D2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.swift */; };
 		55F503702C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55F5036E2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.xib */; };
 		55F503722C084AC100A8CE9A /* TripPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55F503712C084AC100A8CE9A /* TripPhotos.swift */; };
@@ -89,6 +91,8 @@
 		5598524F2BF9F6CB001A9D7F /* TripRequirementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRequirementsViewController.swift; sourceTree = "<group>"; };
 		55D256A52BFD7C5200F4D1EA /* OnATripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnATripViewController.swift; sourceTree = "<group>"; };
 		55D256A92BFD81E100F4D1EA /* FinishTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishTripViewController.swift; sourceTree = "<group>"; };
+		55EA8AC32C10C56A0023AFB0 /* TripLogPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
+		55EA8AC42C10C56A0023AFB0 /* TripLogPhotosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripLogPhotosCollectionViewCell.xib; sourceTree = "<group>"; };
 		55F5036D2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogsPhotosCollectionViewCell.swift; sourceTree = "<group>"; };
 		55F5036E2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripLogsPhotosCollectionViewCell.xib; sourceTree = "<group>"; };
 		55F503712C084AC100A8CE9A /* TripPhotos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripPhotos.swift; sourceTree = "<group>"; };
@@ -157,6 +161,8 @@
 				558435342C05B0E80092474A /* TripLogsCollectionViewCell.swift */,
 				558435352C05B0E80092474A /* TripLogsCollectionViewCell.xib */,
 				55FDCDF22C0D486300A9F4AE /* TripLogViewController.swift */,
+				55EA8AC32C10C56A0023AFB0 /* TripLogPhotosCollectionViewCell.swift */,
+				55EA8AC42C10C56A0023AFB0 /* TripLogPhotosCollectionViewCell.xib */,
 				5584352E2C0594070092474A /* RecordTripLogViewController.swift */,
 				55F5036D2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.swift */,
 				55F5036E2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.xib */,
@@ -243,6 +249,7 @@
 				55F503702C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.xib in Resources */,
 				552127A12C0E06320019021E /* Animation - 1717423675691.json in Resources */,
 				558711E02BF9D93A006DCB29 /* Base in Resources */,
+				55EA8AC62C10C56A0023AFB0 /* TripLogPhotosCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +263,7 @@
 				558435272C0568190092474A /* TransportationRequirements.swift in Sources */,
 				55D256AA2BFD81E100F4D1EA /* FinishTripViewController.swift in Sources */,
 				55F503762C09242100A8CE9A /* AddPhotoCollectionViewCell.swift in Sources */,
+				55EA8AC52C10C56A0023AFB0 /* TripLogPhotosCollectionViewCell.swift in Sources */,
 				558435292C0586090092474A /* CostRequirements.swift in Sources */,
 				559852502BF9F6CB001A9D7F /* TripRequirementsViewController.swift in Sources */,
 				552127922C0DAD480019021E /* customProfileViewController.swift in Sources */,
@@ -428,6 +436,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 795J9NKZJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Tripom/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -455,6 +464,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 795J9NKZJ3;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Tripom/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

@@ -18,8 +18,6 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
     @IBOutlet var costRequirementLabel: UILabel!
     @IBOutlet var curfewRequirementLabel: UILabel!
     @IBOutlet var commentTextField: UITextField!
-    @IBOutlet var addPhotoButton: UIButton!
-    @IBOutlet var photoImage: UIImageView!
     
     var tripLogs: Results<TripLog>!
     var photoArray: [UIImage] = []
@@ -167,9 +165,6 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
                 return cell
             } else {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TripLogsPhotosCollectionViewCell", for: indexPath) as! TripLogsPhotosCollectionViewCell
-//                let tripLog = tripLogs[indexPath.section]
-//                let photo = tripLog.photoURLs[indexPath.row - 1]
-//                cell.setupCell(photo: photoURLs)
                 cell.tripPhotosImageView.image = photoArray[indexPath.item - 1]
                 return cell
             }
