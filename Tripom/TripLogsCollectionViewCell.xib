@@ -28,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dR-0k-XpG">
-                        <rect key="frame" x="9" y="232" width="160" height="21"/>
+                        <rect key="frame" x="9" y="226" width="160" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -37,13 +37,13 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="278" height="278"/>
+            <size key="customSize" width="205" height="164"/>
             <connections>
                 <outlet property="tripDateLabel" destination="IFf-Y4-tpC" id="cIK-NP-w9p"/>
                 <outlet property="tripSpotLabel" destination="4dR-0k-XpG" id="Ly7-g6-biH"/>
                 <outlet property="tripThumbnailImageView" destination="9De-Y0-siW" id="7rj-ec-9kW"/>
             </connections>
-            <point key="canvasLocation" x="312.97709923664121" y="100"/>
+            <point key="canvasLocation" x="254.96183206106869" y="59.859154929577471"/>
         </collectionViewCell>
     </objects>
 </document>

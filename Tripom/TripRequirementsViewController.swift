@@ -46,7 +46,7 @@ class TripRequirementsViewController: UIViewController {
         startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 100)
         
         resetButton.backgroundColor = UIColor.gray
-        resetButton.frame = CGRect(x: (self.view.frame.size.width / 2) - buttonWidth / 2, y: self.view.frame.size.height - buttonHeight - 50, width: buttonWidth, height: buttonHeight)
+        resetButton.frame = CGRect(x: (self.view.frame.size.width / 2) - buttonWidth / 2, y: self.view.frame.size.height - buttonHeight * 2, width: buttonWidth, height: buttonHeight)
         resetButton.layer.cornerRadius = buttonHeight / 4
         resetButton.setTitle("旅条件をリセットする", for: .normal)
         resetButton.setTitleColor(UIColor.white, for: .normal)

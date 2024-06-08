@@ -35,12 +35,16 @@ class TripLogsViewController: UIViewController, UICollectionViewDataSource, UICo
         collectionView.register(UINib(nibName: "TripLogsCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TripLogsCollectionViewCell")
         tripLogs = realm.objects(TripLog.self)
         
+        collectionView.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.estimatedItemSize = .zero // 自動サイズ調整を無効にする
         }
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 10
         layout.itemSize = CGSize(width: (self.view.frame.width - 30) / 2, height:(self.view.frame.width - 30 ) * 1.5 / 2 )
+        print((self.view.frame.width - 30) / 2)
+        print((self.view.frame.width - 30 ) * 1.5 / 2)
         layout.sectionInset = UIEdgeInsets(top: 20,left: 10,bottom: 0,right: 10)
         collectionView.collectionViewLayout = layout
         
@@ -60,8 +64,6 @@ class TripLogsViewController: UIViewController, UICollectionViewDataSource, UICo
         print(tripLog.destinationRequirement)
         cell.layer.cornerRadius = 10
         cell.backgroundColor = UIColor.systemGray6
-        print("tripLog.photoURL")
-//        print(tripLog.photoURL)
         
 //        取得したデータを元にcellを編集する
         cell.setupCell(tripDate: "2024/05/09", tripSpot: tripLog.destinationRequirement, imageName: tripLog.photoURLs.first ?? "")

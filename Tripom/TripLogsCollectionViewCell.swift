@@ -15,7 +15,6 @@ class TripLogsCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     override func prepareForReuse() {
@@ -30,6 +29,8 @@ class TripLogsCollectionViewCell: UICollectionViewCell {
         print("cell")
         tripDateLabel.text = tripDate
         tripSpotLabel.text = tripSpot
+        tripDateLabel.frame = CGRect(x: 10, y: Int(self.frame.size.height) - 60, width: Int(self.frame.size.width) - 10, height: 20)
+        tripSpotLabel.frame = CGRect(x: 10, y: Int(self.frame.size.height) - 30, width: Int(self.frame.size.width) - 10, height: 20)
         
         if let fileURL = URL(string: imageName) {
             // ファイルパスを取得
