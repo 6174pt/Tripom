@@ -19,6 +19,11 @@ class TripLogsViewController: UIViewController, UICollectionViewDataSource, UICo
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        //        旅記録からの画面遷移(戻る)に備えてTabBarを表示しておく
+        self.tabBarController?.tabBar.alpha = 1
+        self.tabBarController?.tabBar.isHidden = false
+        
         collectionView.reloadData()
     }
 

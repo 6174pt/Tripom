@@ -28,6 +28,8 @@ class TripLogViewController: UIViewController, UICollectionViewDataSource {
         super.viewDidLoad()
         print("viewdidload")
         
+        self.tabBarController?.tabBar.isHidden = true
+        
         //        Indexは遷移前の画面から渡される値
         tripLogs = realm.objects(TripLog.self)
         if index < tripLogs.count {
