@@ -17,7 +17,7 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
     @IBOutlet var transportationRequirementLabel: UILabel!
     @IBOutlet var costRequirementLabel: UILabel!
     @IBOutlet var curfewRequirementLabel: UILabel!
-    @IBOutlet var commentTextField: UITextField!
+    @IBOutlet var commentTextView: UITextView!
     
     var tripLogs: Results<TripLog>!
     var photoArray: [UIImage] = []
@@ -76,7 +76,7 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "TripLogsPhotosCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TripLogsPhotosCollectionViewCell")
         collectionView.register(UINib(nibName: "AddPhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "AddPhotoCollectionViewCell")
-        collectionView.backgroundColor = UIColor.gray
+//        collectionView.backgroundColor = UIColor.gray
         
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.estimatedItemSize = .zero // 自動サイズ調整を無効にする
@@ -93,7 +93,7 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
                 collectionView.reloadData()
         
         //        コメント用のTextFieldの最初に透けて見えるメッセージ
-        commentTextField.placeholder = "旅で感じたことを記しておきましょう！"
+//        commentTextField.placeholder = "旅で感じたことを記しておきましょう！"
         
         //        ボタンのサイズ
         let buttonWidth: CGFloat = self.view.frame.size.width * 3 / 4
@@ -123,7 +123,7 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
             tripLog.costRequirement = nowCostRequirement
             tripLog.curfewRequirement = nowCurfewRequirement
             //            旅のコメント
-            tripLog.tripComment = commentTextField.text!
+            tripLog.tripComment = commentTextView.text!
             //            写真のURL
             tripLog.photoURLs = photoURLArray
             realm.add(tripLog)
@@ -162,10 +162,12 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
             if indexPath.row == 0 {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AddPhotoCollectionViewCell", for: indexPath) as! AddPhotoCollectionViewCell
                 cell.addPhotoButton.addTarget(self, action: #selector(tappedAddPhotoButton), for: .touchUpInside)
+                cell.layer.cornerRadius = 10
                 return cell
             } else {
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TripLogsPhotosCollectionViewCell", for: indexPath) as! TripLogsPhotosCollectionViewCell
                 cell.tripPhotosImageView.image = photoArray[indexPath.item - 1]
+                cell.layer.cornerRadius = 10
                 return cell
             }
         }

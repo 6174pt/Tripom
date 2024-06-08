@@ -14,8 +14,7 @@ class TripLogViewController: UIViewController, UICollectionViewDataSource {
     @IBOutlet var transportationRequirementLabel: UILabel!
     @IBOutlet var costRequirementLabel: UILabel!
     @IBOutlet var curfewRequirementLabel: UILabel!
-    @IBOutlet var tripCommentLabel: UILabel!
-    @IBOutlet var tripPhoto: UIImageView!
+    @IBOutlet var tripCommentTextView: UITextView!
     
     var index: Int = 0
     let realm = try! Realm()
@@ -30,6 +29,8 @@ class TripLogViewController: UIViewController, UICollectionViewDataSource {
         
         self.tabBarController?.tabBar.isHidden = true
         
+        tripCommentTextView.isEditable = false
+        
         //        Indexは遷移前の画面から渡される値
         tripLogs = realm.objects(TripLog.self)
         if index < tripLogs.count {
@@ -38,10 +39,10 @@ class TripLogViewController: UIViewController, UICollectionViewDataSource {
             transportationRequirementLabel.text = tripLog.transportationRequirement
             costRequirementLabel.text = String(tripLog.costRequirement)
             curfewRequirementLabel.text = tripLog.curfewRequirement
-            tripCommentLabel.text = tripLog.tripComment
+            tripCommentTextView.text = tripLog.tripComment
         }
         
-        collectionView.backgroundColor = UIColor.gray
+//        collectionView.backgroundColor = UIColor.gray
 //        collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(UINib(nibName: "TripLogPhotosCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "TripLogPhotosCollectionViewCell")
@@ -71,7 +72,7 @@ class TripLogViewController: UIViewController, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TripLogPhotosCollectionViewCell", for: indexPath) as! TripLogPhotosCollectionViewCell
-        //                cell.tripPhotosImageView.image = photoArray[indexPath.item]
+        cell.layer.cornerRadius = 10
         
         //            cellの画像を設定
         if let photoURLString = tripLog.photoURLs[indexPath.item] as String?,
