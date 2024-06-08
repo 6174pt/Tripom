@@ -91,7 +91,6 @@ class ProfileViewController: UIViewController {
 //        旅レベル
         tripLevelLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width / 2, width: iconImageSize + 50 , height: iconImageSize / 2)
         tripLevelLabel.textAlignment = NSTextAlignment.center
-//        tripLevelLabel.text = "Lv. \(nowTripLevel)"
         tripLevelLabel.font = UIFont.boldSystemFont(ofSize: 40.0)
         profileView.addSubview(tripLevelLabel)
         

@@ -95,7 +95,7 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
         profileView.addSubview(iconImageView)
         
 //        プロフィールメッセージ
-        profileMessageLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.height / 2 + iconImageSize / 2, width: iconImageSize + 50 , height: iconImageSize)
+        profileMessageLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.height / 2 + iconImageSize / 2, width: iconImageSize + 50 , height: iconImageSize * 2 / 3)
         profileMessageLabel.numberOfLines = 2
         profileMessageLabel.textAlignment = NSTextAlignment.center
         profileMessageLabel.text = "お疲れ様です！\n旅は楽しめましたか？"
@@ -115,10 +115,11 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
 //        ボタンのサイズ
         let buttonWidth: CGFloat = self.view.frame.size.width * 3 / 4
         let buttonHeight: CGFloat = buttonWidth * 1 / 5
+        let buttonMargin: CGFloat = self.view.frame.size.height * 0.05
         
 //        ”旅を記録する”ボタン
         recordNowButton.backgroundColor = UIColor.black
-        recordNowButton.frame = CGRect(x: (self.view.frame.size.width / 2) - buttonWidth / 2, y: self.view.frame.size.height - buttonHeight * 2 - 150 / 2, width: buttonWidth, height: buttonHeight)
+        recordNowButton.frame = CGRect(x: (self.view.frame.size.width / 2) - buttonWidth / 2, y: self.view.frame.size.height - buttonHeight * 2 - buttonMargin * 1.5, width: buttonWidth, height: buttonHeight)
         recordNowButton.layer.cornerRadius = buttonHeight / 4
         recordNowButton.setTitle("旅を記録する", for: .normal)
         recordNowButton.setTitleColor(UIColor.white, for: .normal)
@@ -130,7 +131,7 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
         
 //        ”後で記録する”ボタン
         recordLaterButton.backgroundColor = UIColor.gray
-        recordLaterButton.frame = CGRect(x: (self.view.frame.size.width / 2) - buttonWidth / 2, y: self.view.frame.size.height - buttonHeight - 50, width: buttonWidth, height: buttonHeight)
+        recordLaterButton.frame = CGRect(x: (self.view.frame.size.width / 2) - buttonWidth / 2, y: self.view.frame.size.height - buttonHeight - buttonMargin, width: buttonWidth, height: buttonHeight)
         recordLaterButton.layer.cornerRadius = buttonHeight / 4
         recordLaterButton.setTitle("後で記録する", for: .normal)
         recordLaterButton.setTitleColor(UIColor.white, for: .normal)
@@ -190,6 +191,8 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
             print("animation1didstop")
             //        レベルアップ後のレベルの表示
             profileMessageLabel.text = "Lv. \(tripLevel + 1)"
+            profileMessageLabel.textAlignment = NSTextAlignment.center
+            profileMessageLabel.font = UIFont.boldSystemFont(ofSize: 40.0)
             
             //        アニメーション
             animationView = LottieAnimationView(name: "Animation - 1717424783266")
