@@ -45,7 +45,7 @@ class ProfileViewController: UIViewController {
         let iconImageView = UIImageView()
         
 //        円ゲージ
-        let ciclePath=UIBezierPath(arcCenter: CGPoint(x: view.frame.size.width / 2, y: view.frame.size.width / 2), radius: iconImageSize / 2 + 10, startAngle: -(.pi/2), endAngle: CGFloat(rate) * 2 * .pi - (.pi/2), clockwise: true)
+        let ciclePath=UIBezierPath(arcCenter: CGPoint(x: view.frame.size.width / 2, y: view.frame.size.width / 3), radius: iconImageSize / 2 + 10, startAngle: -(.pi/2), endAngle: CGFloat(rate) * 2 * .pi - (.pi/2), clockwise: true)
         let shape = CAShapeLayer()
         shape.path=ciclePath.cgPath
         shape.lineWidth=5
@@ -79,7 +79,7 @@ class ProfileViewController: UIViewController {
         let iconImageSize: CGFloat = view.frame.size.width * 1 / 3
         let iconImageView = UIImageView()
         iconImageView.image = UIImage(named: "icon")
-        iconImageView.frame = CGRect(x: view.frame.size.width / 2 - iconImageSize / 2, y: view.frame.size.width / 2 - iconImageSize / 2, width: iconImageSize, height: iconImageSize)
+        iconImageView.frame = CGRect(x: view.frame.size.width / 2 - iconImageSize / 2, y: view.frame.size.width / 6, width: iconImageSize, height: iconImageSize)
         iconImageView.layer.cornerRadius = iconImageSize / 2
         iconImageView.layer.masksToBounds = true
         profileView.addSubview(iconImageView)
@@ -89,20 +89,20 @@ class ProfileViewController: UIViewController {
 
         
 //        旅レベル
-        tripLevelLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width / 2 + iconImageSize / 2, width: iconImageSize + 50 , height: iconImageSize / 2)
+        tripLevelLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width / 2, width: iconImageSize + 50 , height: iconImageSize / 2)
         tripLevelLabel.textAlignment = NSTextAlignment.center
 //        tripLevelLabel.text = "Lv. \(nowTripLevel)"
         tripLevelLabel.font = UIFont.boldSystemFont(ofSize: 40.0)
         profileView.addSubview(tripLevelLabel)
         
 //        ユーザー名
-        userNameLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width / 2 + iconImageSize / 2 + iconImageSize / 2, width: iconImageSize + 50 , height: iconImageSize / 4)
+        userNameLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width * 2 / 3, width: iconImageSize + 50 , height: iconImageSize / 4)
         userNameLabel.textAlignment = NSTextAlignment.center
 //        userNameLabel.text = "\(userName)"
         profileView.addSubview(userNameLabel)
         
 //        ユーザーID
-        userIDLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width / 2 + iconImageSize / 2 + iconImageSize / 2 + iconImageSize / 4, width: iconImageSize + 50 , height: iconImageSize / 4)
+        userIDLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width * 3 / 4, width: iconImageSize + 50 , height: iconImageSize / 4)
         userIDLabel.textAlignment = NSTextAlignment.center
 //        userIDLabel.text = "\(userID)"
         userIDLabel.textColor = UIColor.gray
@@ -111,6 +111,8 @@ class ProfileViewController: UIViewController {
 //        ボタンのサイズ
         let buttonWidth: CGFloat = self.view.frame.size.width * 3 / 4
         let buttonHeight: CGFloat = buttonWidth * 1 / 5
+        print(self.view.frame.size.width)
+        print(self.view.frame.size.height)
         
 //        ”共有”ボタン
         shareProfileButton.backgroundColor = UIColor.black
@@ -144,7 +146,7 @@ extension UIView {
                     print(rate)
                     // ここに円ゲージを描画
                     let iconImageSize: CGFloat = bounds.size.width * 1 / 3
-                    let circlePath = UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2, y: bounds.size.width / 2), radius: iconImageSize / 2 + 10, startAngle: -(.pi/2), endAngle: CGFloat(rate) * 2 * .pi - (.pi/2), clockwise: true)
+                    let circlePath = UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2, y: bounds.size.width / 3), radius: iconImageSize / 2 + 10, startAngle: -(.pi/2), endAngle: CGFloat(rate) * 2 * .pi - (.pi/2), clockwise: true)
                     
                     ctx.cgContext.setLineWidth(5)
                     ctx.cgContext.setStrokeColor(UIColor(red: 242 / 255, green: 223 / 255, blue: 154 / 255, alpha: 1.0).cgColor)

@@ -111,6 +111,12 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
         
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if (self.commentTextView.isFirstResponder) {
+            self.commentTextView.resignFirstResponder()
+        }
+    }
+    
     //    旅記録を保存するAction
     func tappedSaveButton(){
         print("add")
