@@ -160,7 +160,7 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
             let animation1=CABasicAnimation(keyPath: "strokeEnd")
             animation1.fromValue = beforeRate
             animation1.toValue = 1.0
-            animation1.duration = 3.0
+            animation1.duration = CFTimeInterval(6.0 * (1.0 - beforeRate))
             animation1.isRemovedOnCompletion = false
             animation1.fillMode = .forwards
             animation1.delegate = self
@@ -177,7 +177,7 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
             let animation2=CABasicAnimation(keyPath: "strokeEnd")
             animation2.fromValue = beforeRate
             animation2.toValue = afterRate
-            animation2.duration = 3.0
+            animation2.duration = CFTimeInterval(6.0 * (afterRate - beforeRate))
             animation2.isRemovedOnCompletion=false
             animation2.fillMode = .forwards
             shape.add(animation2,forKey: "animation2")
