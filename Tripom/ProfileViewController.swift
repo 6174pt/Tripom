@@ -15,17 +15,47 @@ class ProfileViewController: UIViewController {
     let userNameLabel: UILabel = UILabel()
     let userIDLabel: UILabel = UILabel()
     let shareProfileButton: UIButton = UIButton()
+    let settingButton: UIButton = UIButton()
+    let iconImageView = UIImageView()
     
     let realm = try! Realm()
     var rate: Float = 0
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
 //        userのプロフィールを取得
         let userData = realm.objects(User.self)
         if let user = userData.first {
             tripLevelLabel.text = "Lv. \(user.tripLevel)"
             userNameLabel.text = user.userName
             userIDLabel.text = user.userID
+            
+            if let fileURL = URL(string: user.userIconImageURL) {
+                // ファイルパスを取得
+                let filePath = fileURL.path
+                print("filePath", filePath)
+                
+                // FileManagerを使用してファイルの存在を確認
+                let fileManager = FileManager.default
+                if fileManager.fileExists(atPath: filePath) {
+                    print("ファイルは存在します")
+                    // ファイルが存在する場合、UIImageを設定
+                    if let data = try? Data(contentsOf: fileURL),
+                       let image = UIImage(data: data) {
+                        iconImageView.image = image
+                    } else {
+                        print("ファイルは存在しますが、UIImageに変換できません")
+                        iconImageView.image = UIImage(named: "defaultImage")
+                    }
+                } else {
+                    print("ファイルが存在しません")
+                    iconImageView.image = UIImage(named: "defaultImage")
+                }
+            } else {
+                print("無効なURLです")
+                iconImageView.image = UIImage(named: "defaultImage")
+            }
+            
             
 //            現在の旅ポイントが今の旅レベルのMaxポイントを上回っていたら
             if user.tripPoints >= ((user.tripLevel - 1) * 5 + 15) {
@@ -77,7 +107,6 @@ class ProfileViewController: UIViewController {
         
 //        ユーザーアイコン
         let iconImageSize: CGFloat = view.frame.size.width * 1 / 3
-        let iconImageView = UIImageView()
         iconImageView.image = UIImage(named: "icon")
         iconImageView.frame = CGRect(x: view.frame.size.width / 2 - iconImageSize / 2, y: view.frame.size.width / 6, width: iconImageSize, height: iconImageSize)
         iconImageView.layer.cornerRadius = iconImageSize / 2
@@ -125,6 +154,31 @@ class ProfileViewController: UIViewController {
         }), for: .touchUpInside)
         view.addSubview(shareProfileButton)
         
+        let navBarHeight = self.navigationController?.navigationBar.frame.size.height
+        
+        //        ”設定”ボタン
+//        settingButton.frame = CGRect(x: self.view.frame.size.width - 50, y: (navBarHeight ?? 50) + 20, width: 30, height: 30)
+        settingButton.setImage(UIImage(systemName: "gearshape"), for: .normal)
+        settingButton.tintColor = UIColor.lightGray
+        settingButton.imageView?.contentMode = .scaleAspectFill
+        settingButton.contentHorizontalAlignment = .fill
+        settingButton.contentVerticalAlignment = .fill
+        settingButton.addAction(UIAction(handler: { _ in
+            self.tappedSettingButton()
+        }), for: .touchUpInside)
+        settingButton.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(settingButton)
+        
+        let safeArea = view.safeAreaLayoutGuide
+        
+        // Auto Layout 制約の追加
+        NSLayoutConstraint.activate([
+            settingButton.topAnchor.constraint(equalTo: safeArea.topAnchor, constant: -20),
+            settingButton.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -20),
+            settingButton.widthAnchor.constraint(equalToConstant: 40),
+            settingButton.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
     }
     
     func tappedShareProfileButton() {
@@ -132,6 +186,13 @@ class ProfileViewController: UIViewController {
         let image = profileView.image(withRate: rate)
         let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         self.present(activityVC, animated: true, completion: nil)
+    }
+    
+    func tappedSettingButton() {
+        print("tappedSettingButton")
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
 
 }

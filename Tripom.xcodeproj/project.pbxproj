@@ -32,6 +32,7 @@
 		558711E02BF9D93A006DCB29 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 558711DF2BF9D93A006DCB29 /* Base */; };
 		558711E22BF9D93C006DCB29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558711E12BF9D93C006DCB29 /* Assets.xcassets */; };
 		558711E52BF9D93C006DCB29 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 558711E42BF9D93C006DCB29 /* Base */; };
+		559610C62C15F7BE00E62550 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559610C52C15F7BE00E62550 /* SettingViewController.swift */; };
 		5598524A2BF9DFD8001A9D7F /* StartTripViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 559852492BF9DFD8001A9D7F /* StartTripViewController.swift */; };
 		5598524C2BF9E3AD001A9D7F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598524B2BF9E3AD001A9D7F /* TabBarController.swift */; };
 		559852502BF9F6CB001A9D7F /* TripRequirementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5598524F2BF9F6CB001A9D7F /* TripRequirementsViewController.swift */; };
@@ -86,6 +87,7 @@
 		558711E12BF9D93C006DCB29 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		558711E42BF9D93C006DCB29 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		558711E62BF9D93C006DCB29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		559610C52C15F7BE00E62550 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		559852492BF9DFD8001A9D7F /* StartTripViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartTripViewController.swift; sourceTree = "<group>"; };
 		5598524B2BF9E3AD001A9D7F /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5598524F2BF9F6CB001A9D7F /* TripRequirementsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRequirementsViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +147,7 @@
 				558711E62BF9D93C006DCB29 /* Info.plist */,
 				552127A62C0E173A0019021E /* User.swift */,
 				5584351A2C04E5BF0092474A /* ProfileViewController.swift */,
+				559610C52C15F7BE00E62550 /* SettingViewController.swift */,
 				552127912C0DAD480019021E /* customProfileViewController.swift */,
 				5598524B2BF9E3AD001A9D7F /* TabBarController.swift */,
 				559852492BF9DFD8001A9D7F /* StartTripViewController.swift */,
@@ -263,6 +266,7 @@
 				558435272C0568190092474A /* TransportationRequirements.swift in Sources */,
 				55D256AA2BFD81E100F4D1EA /* FinishTripViewController.swift in Sources */,
 				55F503762C09242100A8CE9A /* AddPhotoCollectionViewCell.swift in Sources */,
+				559610C62C15F7BE00E62550 /* SettingViewController.swift in Sources */,
 				55EA8AC52C10C56A0023AFB0 /* TripLogPhotosCollectionViewCell.swift in Sources */,
 				558435292C0586090092474A /* CostRequirements.swift in Sources */,
 				559852502BF9F6CB001A9D7F /* TripRequirementsViewController.swift in Sources */,

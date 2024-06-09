@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let config = Realm.Configuration(schemaVersion: 9)
+        let config = Realm.Configuration(schemaVersion: 10)
         Realm.Configuration.defaultConfiguration = config
         
         setupInitialData()
@@ -154,6 +154,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if existingUserData.isEmpty {
             try! realm.write {
                 let user = User()
+                user.userIconImageURL = ""
                 user.userID = "userID"
                 user.userName = "userName"
                 user.tripPoints = 0

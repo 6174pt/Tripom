@@ -132,11 +132,27 @@
                         <viewLayoutGuide key="safeArea" id="WxC-Cg-HYa"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="プロフィール" image="person" catalog="system" selectedImage="person" id="62J-kA-vg2"/>
+                    <navigationItem key="navigationItem" title="プロフィール" id="pJx-bl-FLG"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f4v-id-GAr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1063" y="769"/>
+            <point key="canvasLocation" x="1988.5496183206105" y="768.30985915492965"/>
+        </scene>
+        <!--プロフィール設定-->
+        <scene sceneID="pzZ-iL-xwc">
+            <objects>
+                <viewController storyboardIdentifier="SettingViewController" id="1CO-K5-AtP" customClass="SettingViewController" customModule="Tripom" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wqQ-PA-3Pw">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="PP1-DP-ITh"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="プロフィール設定" id="0Eo-G7-Z70"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4TD-yA-VqA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2776" y="768"/>
         </scene>
         <!--旅記録-->
         <scene sceneID="sj2-wR-2pq">
@@ -199,7 +215,7 @@
                     <connections>
                         <segue destination="Vsg-FZ-VfK" kind="relationship" relationship="viewControllers" id="BjR-dS-lAa"/>
                         <segue destination="Bc2-eN-1Dz" kind="relationship" relationship="viewControllers" id="NgK-zG-ieh"/>
-                        <segue destination="8xp-6W-BeN" kind="relationship" relationship="viewControllers" id="X9w-TH-uwj"/>
+                        <segue destination="b74-tg-ZGB" kind="relationship" relationship="viewControllers" id="X9w-TH-uwj"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SFY-Bd-HVU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -243,6 +259,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gAm-en-NO1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1060.3053435114502" y="-704.22535211267609"/>
+        </scene>
+        <!--プロフィール-->
+        <scene sceneID="YhX-wt-u28">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="b74-tg-ZGB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="プロフィール" image="person" catalog="system" selectedImage="person" id="62J-kA-vg2"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="JBa-xR-iQU">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8xp-6W-BeN" kind="relationship" relationship="rootViewController" id="Lf6-xa-nAY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CSt-JY-hZF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1061.8320610687022" y="768.30985915492965"/>
         </scene>
     </scenes>
     <resources>
