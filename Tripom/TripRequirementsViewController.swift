@@ -10,8 +10,8 @@ import RealmSwift
 
 class TripRequirementsViewController: UIViewController {
     
-    @IBOutlet var startButton: UIButton!
-    @IBOutlet var resetButton: UIButton!
+    let startButton: UIButton = UIButton()
+    let resetButton: UIButton = UIButton()
     
     let requirementsView: UIView = UIView()
     
@@ -65,14 +65,22 @@ class TripRequirementsViewController: UIViewController {
         startButton.layer.cornerRadius = buttonHeight / 4
         startButton.setTitle("この旅条件で旅を始める", for: .normal)
         startButton.setTitleColor(UIColor.white, for: .normal)
-        startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 100)
+        startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        startButton.addAction(UIAction(handler: { _ in
+            self.tappedStartButton()
+        }), for: .touchUpInside)
+        view.addSubview(startButton)
         
         resetButton.backgroundColor = UIColor.gray
         resetButton.frame = CGRect(x: (self.view.frame.size.width / 2) - buttonWidth / 2, y: self.view.frame.size.height - buttonHeight - buttonMargin, width: buttonWidth, height: buttonHeight)
         resetButton.layer.cornerRadius = buttonHeight / 4
         resetButton.setTitle("旅条件をリセットする", for: .normal)
         resetButton.setTitleColor(UIColor.white, for: .normal)
-        resetButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 100)
+        resetButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        resetButton.addAction(UIAction(handler: { _ in
+            self.tappedResetButton()
+        }), for: .touchUpInside)
+        view.addSubview(resetButton)
         
         //        旅条件表示ビュー
         let navBarHeight = self.navigationController?.navigationBar.frame.size.height
@@ -253,7 +261,7 @@ class TripRequirementsViewController: UIViewController {
         }
     }
     
-    @IBAction func tappedStartButton(){
+    func tappedStartButton(){
 //        '提案された旅条件'を'今の旅の旅条件'に代入する
         let existingNowTripRequirementsData = realm.objects(NowTripRequirements.self)
 //        '今の旅の旅条件'が空の時はそのまま'提案された旅条件'を'今の旅の旅条件'に代入する
@@ -291,7 +299,7 @@ class TripRequirementsViewController: UIViewController {
     }
     
 //    ’旅条件をリセットする’ボタンを押した時
-    @IBAction func tappedResetButton() {
+    func tappedResetButton() {
         let alert: UIAlertController = UIAlertController(title: "旅条件をリセットしますか？", message: "旅条件をリセットすると、旅完了後に加算される旅ポイントが減少します", preferredStyle: .alert)
         
         let defaultAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .default, handler: {
