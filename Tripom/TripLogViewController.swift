@@ -264,7 +264,6 @@ class TripLogViewController: UIViewController, UICollectionViewDataSource {
         
         //        写真-写真セクション
         tripPhotoView.frame=CGRect(x: 0, y: sectionTopBottomMargin * 2 + sectionHeight, width: photosSectionWidth, height: photosViewHeight - sectionHeight - sectionTopBottomMargin * 3)
-//        tripPhotoView.backgroundColor = UIColor.systemGray
         photosView.addSubview(tripPhotoView)
         
         //        写真-写真セクション-写真
