@@ -14,6 +14,7 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
     let profileView: UIView = UIView()
     let tripLevelLabel: UILabel = UILabel()
     let userNameLabel: UILabel = UILabel()
+    let userNameTextView: UITextView = UITextView()
     let userIDLabel: UILabel = UILabel()
     
     let iconImageView: UIImageView = UIImageView()
@@ -21,6 +22,7 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
     
     let realm = try! Realm()
     var photoURL: String = ""
+    var selectedPhotoURL: String?
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -29,6 +31,7 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
         if let user = userData.first {
             tripLevelLabel.text = "Lv. \(user.tripLevel)"
             userNameLabel.text = user.userName
+            userNameTextView.text = user.userName
             userIDLabel.text = user.userID
             
             if let fileURL = URL(string: user.userIconImageURL) {
@@ -66,6 +69,9 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let saveButton = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(saveButtonTapped))
+                navigationItem.rightBarButtonItem = saveButton
 
         //        プロフィール表示ビュー
         profileView.frame=CGRect(x: 0, y: view.frame.size.height / 2 - view.frame.size.width / 2, width: view.frame.size.width, height: view.frame.size.width)
@@ -85,10 +91,15 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
         profileView.addSubview(iconImageButton)
         
         //        ユーザー名
-        userNameLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width * 2 / 3, width: iconImageSize + 50 , height: iconImageSize / 4)
-        userNameLabel.textAlignment = NSTextAlignment.center
+//        userNameLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width * 2 / 3, width: iconImageSize + 50 , height: iconImageSize / 4)
+//        userNameLabel.textAlignment = NSTextAlignment.center
+//        //        userNameLabel.text = "\(userName)"
+//        profileView.addSubview(userNameLabel)
+        
+        userNameTextView.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width * 2 / 3, width: iconImageSize + 50 , height: iconImageSize / 4)
+        userNameTextView.textAlignment = NSTextAlignment.center
         //        userNameLabel.text = "\(userName)"
-        profileView.addSubview(userNameLabel)
+        profileView.addSubview(userNameTextView)
         
         //        ユーザーID
         userIDLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width * 3 / 4, width: iconImageSize + 50 , height: iconImageSize / 4)
@@ -96,6 +107,30 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
         //        userIDLabel.text = "\(userID)"
         userIDLabel.textColor = UIColor.gray
         profileView.addSubview(userIDLabel)
+    }
+    
+    @objc func saveButtonTapped() {
+        print("Save button tapped")
+        guard let newUsername = userNameTextView.text else { return }
+        do {
+                let existingUserData = realm.objects(User.self).first
+                guard let userData = existingUserData else {
+                    print("No user data found")
+                    return
+                }
+                
+                try realm.write {
+                    // ユーザーネームを更新
+                    userData.userName = newUsername
+                    
+                    // 画像URLが存在する場合、iconURLを更新
+                    if let imageURL = selectedPhotoURL {
+                        userData.userIconImageURL = imageURL
+                    }
+                }
+            } catch {
+                print("Error updating username or iconURL in Realm: \(error)")
+            }
     }
     
     @objc func tappediconImageButton() {
@@ -146,10 +181,11 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
                         print("fileURL", fileURL)
                         DispatchQueue.main.async {
                             self.photoURL = fileURL.absoluteString
-                            let existingUserData = self.realm.objects(User.self).first
-                            try! self.realm.write{
-                                existingUserData?.userIconImageURL = self.photoURL
-                            }
+                            self.selectedPhotoURL = self.photoURL
+//                            let existingUserData = self.realm.objects(User.self).first
+//                            try! self.realm.write{
+//                                existingUserData?.userIconImageURL = self.photoURL
+//                            }
                         }
                     }
                 }
