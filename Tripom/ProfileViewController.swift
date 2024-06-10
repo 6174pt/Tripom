@@ -104,6 +104,8 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:  "戻る", style:  .plain, target: nil, action: nil)
+        
 //        まだID必要ないので隠しておく
         userIDLabel.isHidden = true
         
@@ -193,7 +195,7 @@ class ProfileViewController: UIViewController {
     
     func tappedShareProfileButton() {
         print("tappedShareProfileButton")
-        let image = profileView.image(withRate: rate)
+        let image = profileView.image(withRate: rate, iconImage: UIImage(named: "icon")!, appName: "Tripom")
         let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         self.present(activityVC, animated: true, completion: nil)
     }
@@ -208,7 +210,7 @@ class ProfileViewController: UIViewController {
 }
 
 extension UIView {
-    func image(withRate rate: Float) -> UIImage {
+    func image(withRate rate: Float, iconImage: UIImage, appName: String) -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: bounds.size)
                 return renderer.image { ctx in
                     // 既存の描画内容をキャプチャ
@@ -223,6 +225,27 @@ extension UIView {
                     ctx.cgContext.setLineCap(.round)
                     ctx.cgContext.addPath(circlePath.cgPath)
                     ctx.cgContext.strokePath()
+                    
+                    // 画像の右下にアイコン画像を描画
+                    let iconSize: CGFloat = 40
+                    let iconX: CGFloat = bounds.size.width - iconSize - 10
+                    let iconY: CGFloat = bounds.size.height - iconSize - 30
+                    let iconRect = CGRect(x: iconX, y: iconY, width: iconSize, height: iconSize)
+                    iconImage.draw(in: iconRect)
+                    
+                    // アイコン画像の下にアプリ名を描画
+                    let textFont = UIFont.systemFont(ofSize: 12)
+                    let textColor = UIColor.black
+                    let attributes: [NSAttributedString.Key: Any] = [
+                        .font: textFont,
+                        .foregroundColor: textColor
+                    ]
+                    let textSize = appName.size(withAttributes: attributes)
+                    let textX = bounds.size.width - textSize.width - 10
+                    let textY = iconY + iconSize + 5
+                    let textRect = CGRect(x: textX, y: textY, width: textSize.width, height: textSize.height)
+                    appName.draw(in: textRect, withAttributes: attributes)
+                    
                 }
     }
 }
