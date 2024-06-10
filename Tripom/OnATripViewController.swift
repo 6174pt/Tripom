@@ -233,8 +233,25 @@ class OnATripViewController: UIViewController {
     }
     
     func tappedRetireButton() {
+        let alert: UIAlertController = UIAlertController(title: "旅をリタイアしますか？", message: "旅をリタイアすると元の画面に戻れません。", preferredStyle: .alert)
         
+        let defaultAction: UIAlertAction = UIAlertAction(title: "キャンセル", style: .default, handler: {
+            (action: UIAlertAction) -> Void in
+            
+        })
+        let cancelAction: UIAlertAction = UIAlertAction(title: "リタイア", style: .default, handler: {
+            (action: UIAlertAction) -> Void in
+            if let tabBarController = self.tabBarController {
+                tabBarController.selectedIndex = 1
+                self.navigationController?.popToRootViewController(animated: true)
+            } else {
+                print("No TabBarController found")
+            }
+        })
         
+        alert.addAction(defaultAction)
+        alert.addAction(cancelAction)
+        present(alert, animated: true, completion: nil)
     }
 
 
