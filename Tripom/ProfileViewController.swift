@@ -118,6 +118,7 @@ class ProfileViewController: UIViewController {
         iconImageView.frame = CGRect(x: view.frame.size.width / 2 - iconImageSize / 2, y: view.frame.size.width / 6, width: iconImageSize, height: iconImageSize)
         iconImageView.layer.cornerRadius = iconImageSize / 2
         iconImageView.layer.masksToBounds = true
+        iconImageView.contentMode = .scaleAspectFill
         profileView.addSubview(iconImageView)
         
 
@@ -125,13 +126,13 @@ class ProfileViewController: UIViewController {
 
         
 //        旅レベル
-        tripLevelLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width / 2, width: iconImageSize + 50 , height: iconImageSize / 2)
+        tripLevelLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width / 2 + 15, width: iconImageSize + 50 , height: iconImageSize / 2)
         tripLevelLabel.textAlignment = NSTextAlignment.center
         tripLevelLabel.font = UIFont.boldSystemFont(ofSize: 40.0)
         profileView.addSubview(tripLevelLabel)
         
 //        ユーザー名
-        userNameLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width * 2 / 3, width: iconImageSize + 50 , height: iconImageSize / 4)
+        userNameLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width * 2 / 3 + 15, width: iconImageSize + 50 , height: iconImageSize / 4)
         userNameLabel.textAlignment = NSTextAlignment.center
         userNameLabel.font = UIFont.boldSystemFont(ofSize: 25.0)
         userNameLabel.adjustsFontSizeToFitWidth = true
@@ -168,6 +169,7 @@ class ProfileViewController: UIViewController {
 //        settingButton.frame = CGRect(x: self.view.frame.size.width - 50, y: (navBarHeight ?? 50) + 20, width: 30, height: 30)
         settingButton.setImage(UIImage(systemName: "gearshape"), for: .normal)
         settingButton.tintColor = UIColor.lightGray
+        settingButton.backgroundColor = UIColor.white
         settingButton.imageView?.contentMode = .scaleAspectFill
         settingButton.contentHorizontalAlignment = .fill
         settingButton.contentVerticalAlignment = .fill

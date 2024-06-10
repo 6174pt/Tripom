@@ -90,6 +90,7 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
         iconImageButton.frame = CGRect(x: view.frame.size.width / 2 - iconImageSize / 2, y: view.frame.size.width / 6, width: iconImageSize, height: iconImageSize)
         iconImageButton.layer.cornerRadius = iconImageSize / 2
         iconImageButton.layer.masksToBounds = true
+        iconImageButton.imageView?.contentMode = .scaleAspectFill
         iconImageButton.addAction(UIAction(handler: { _ in
             self.tappediconImageButton()
         }), for: .touchUpInside)
