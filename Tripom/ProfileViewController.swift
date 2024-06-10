@@ -23,6 +23,10 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        //        プロフィール設定画面からの画面遷移に備えてTabBarを表示しておく
+        self.tabBarController?.tabBar.isHidden = false
+        
 //        userのプロフィールを取得
         let userData = realm.objects(User.self)
         if let user = userData.first {
@@ -100,6 +104,9 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        まだID必要ないので隠しておく
+        userIDLabel.isHidden = true
+        
 //        プロフィール表示ビュー
         profileView.frame=CGRect(x: 0, y: view.frame.size.height / 2 - view.frame.size.width / 2, width: view.frame.size.width, height: view.frame.size.width)
         profileView.backgroundColor = UIColor.white
@@ -126,7 +133,8 @@ class ProfileViewController: UIViewController {
 //        ユーザー名
         userNameLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width * 2 / 3, width: iconImageSize + 50 , height: iconImageSize / 4)
         userNameLabel.textAlignment = NSTextAlignment.center
-//        userNameLabel.text = "\(userName)"
+        userNameLabel.font = UIFont.boldSystemFont(ofSize: 25.0)
+        userNameLabel.adjustsFontSizeToFitWidth = true
         profileView.addSubview(userNameLabel)
         
 //        ユーザーID

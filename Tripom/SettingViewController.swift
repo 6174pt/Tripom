@@ -14,9 +14,9 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
     let profileView: UIView = UIView()
     let tripLevelLabel: UILabel = UILabel()
     let userNameLabel: UILabel = UILabel()
-    let userNameTextView: UITextView = UITextView()
+    let userNameTextField: UITextField = UITextField()
     let userIDLabel: UILabel = UILabel()
-    
+    let userNameTitleLabel: UILabel = UILabel()
     let iconImageView: UIImageView = UIImageView()
     let iconImageButton: UIButton = UIButton()
     
@@ -31,7 +31,7 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
         if let user = userData.first {
             tripLevelLabel.text = "Lv. \(user.tripLevel)"
             userNameLabel.text = user.userName
-            userNameTextView.text = user.userName
+            userNameTextField.text = user.userName
             userIDLabel.text = user.userID
             
             if let fileURL = URL(string: user.userIconImageURL) {
@@ -70,6 +70,11 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        まだID必要ないので隠しておく
+        userIDLabel.isHidden = true
+        
+        self.tabBarController?.tabBar.isHidden = true
+        
         let saveButton = UIBarButtonItem(title: "保存", style: .plain, target: self, action: #selector(saveButtonTapped))
                 navigationItem.rightBarButtonItem = saveButton
 
@@ -90,16 +95,23 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
         }), for: .touchUpInside)
         profileView.addSubview(iconImageButton)
         
-        //        ユーザー名
-//        userNameLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width * 2 / 3, width: iconImageSize + 50 , height: iconImageSize / 4)
-//        userNameLabel.textAlignment = NSTextAlignment.center
-//        //        userNameLabel.text = "\(userName)"
-//        profileView.addSubview(userNameLabel)
+        if let overlayImage = createOverlayImage() {
+            let overlayImageView = UIImageView(image: overlayImage)
+            overlayImageView.frame = iconImageButton.bounds
+            overlayImageView.contentMode = .scaleAspectFit
+            iconImageButton.addSubview(overlayImageView)
+                }
         
-        userNameTextView.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width * 2 / 3, width: iconImageSize + 50 , height: iconImageSize / 4)
-        userNameTextView.textAlignment = NSTextAlignment.center
-        //        userNameLabel.text = "\(userName)"
-        profileView.addSubview(userNameTextView)
+//        "ユーザー名"タイトルラベル
+        userNameTitleLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width * 2 / 3 - iconImageSize / 4, width: iconImageSize + 50 , height: iconImageSize / 4)
+        userNameTitleLabel.textAlignment = NSTextAlignment.center
+        userNameTitleLabel.text = "ユーザー名"
+        profileView.addSubview(userNameTitleLabel)
+        
+        userNameTextField.frame = CGRect(x: 10, y: view.frame.size.width * 2 / 3, width: view.frame.size.width - 20 , height: iconImageSize / 4)
+        userNameTextField.textAlignment = NSTextAlignment.center
+        userNameTextField.font = UIFont.boldSystemFont(ofSize: 25.0)
+        profileView.addSubview(userNameTextField)
         
         //        ユーザーID
         userIDLabel.frame = CGRect(x: view.frame.size.width / 2 - (iconImageSize + 50) / 2, y: view.frame.size.width * 3 / 4, width: iconImageSize + 50 , height: iconImageSize / 4)
@@ -111,7 +123,7 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
     
     @objc func saveButtonTapped() {
         print("Save button tapped")
-        guard let newUsername = userNameTextView.text else { return }
+        guard let newUsername = userNameTextField.text else { return }
         do {
                 let existingUserData = realm.objects(User.self).first
                 guard let userData = existingUserData else {
@@ -128,9 +140,20 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
                         userData.userIconImageURL = imageURL
                     }
                 }
+            
+            showAlert(title: "完了", message: "プロフィールが変更されました")
+            
             } catch {
                 print("Error updating username or iconURL in Realm: \(error)")
             }
+    }
+    
+    func showAlert(title: String, message: String) {
+        print("aleart")
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
     }
     
     @objc func tappediconImageButton() {
@@ -192,6 +215,31 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
             }
         }
         
+    }
+    
+    func createOverlayImage() -> UIImage? {
+        let size = CGSize(width: 100, height: 100)
+        
+        // 開始する画像のコンテキストを作成
+        UIGraphicsBeginImageContextWithOptions(size, false, 0.0)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        
+        // 透明度50%の灰色の背景を描画
+        context.setFillColor(UIColor.white.withAlphaComponent(0.5).cgColor)
+        context.fill(CGRect(origin: .zero, size: size))
+        
+        // SF Symbolsの"photo"アイコンを描画
+        let config = UIImage.SymbolConfiguration(pointSize: 20, weight: .regular)
+        if let symbolImage = UIImage(systemName: "photo", withConfiguration: config)?.withTintColor(.white, renderingMode: .alwaysOriginal) {
+            let symbolPoint = CGPoint(x: (size.width - symbolImage.size.width) / 2, y: (size.height - symbolImage.size.height) / 2)
+            symbolImage.draw(at: symbolPoint)
+        }
+        
+        // 描画した画像を取得
+        let overlayImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return overlayImage
     }
 
 }

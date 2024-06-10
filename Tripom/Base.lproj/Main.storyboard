@@ -138,7 +138,7 @@
             </objects>
             <point key="canvasLocation" x="1988.5496183206105" y="768.30985915492965"/>
         </scene>
-        <!--プロフィール設定-->
+        <!--プロフィールを編集-->
         <scene sceneID="pzZ-iL-xwc">
             <objects>
                 <viewController storyboardIdentifier="SettingViewController" id="1CO-K5-AtP" customClass="SettingViewController" customModule="Tripom" customModuleProvider="target" sceneMemberID="viewController">
@@ -148,7 +148,7 @@
                         <viewLayoutGuide key="safeArea" id="PP1-DP-ITh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="プロフィール設定" id="0Eo-G7-Z70"/>
+                    <navigationItem key="navigationItem" title="プロフィールを編集" id="0Eo-G7-Z70"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4TD-yA-VqA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
