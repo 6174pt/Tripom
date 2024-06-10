@@ -15,6 +15,7 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
     let profileMessageLabel: UILabel = UILabel()
     let recordNowButton: UIButton = UIButton()
     let recordLaterButton: UIButton = UIButton()
+    let iconImageView: UIImageView = UIImageView()
     
     var animationView = LottieAnimationView()
     
@@ -49,6 +50,33 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
             print("加算前のポイント", beforeTripPoints)
             tripLevel = user.tripLevel
             print("加算前のレベル(データモデル内)", user.tripLevel)
+            
+            if let fileURL = URL(string: user.userIconImageURL) {
+                // ファイルパスを取得
+                let filePath = fileURL.path
+                print("filePath", filePath)
+                
+                // FileManagerを使用してファイルの存在を確認
+                let fileManager = FileManager.default
+                if fileManager.fileExists(atPath: filePath) {
+                    print("ファイルは存在します")
+                    // ファイルが存在する場合、UIImageを設定
+                    if let data = try? Data(contentsOf: fileURL),
+                       let image = UIImage(data: data) {
+                        iconImageView.image = image
+                    } else {
+                        print("ファイルは存在しますが、UIImageに変換できません")
+                        iconImageView.image = UIImage(named: "defaultImage")
+                    }
+                } else {
+                    print("ファイルが存在しません")
+                    iconImageView.image = UIImage(named: "defaultImage")
+                }
+            } else {
+                print("無効なURLです")
+                iconImageView.image = UIImage(named: "defaultImage")
+            }
+            
         } else {
             print("データモデルUserのデータがありません")
         }
@@ -87,8 +115,6 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
         
 //        ユーザーアイコン
         let iconImageSize: CGFloat = view.frame.size.width * 1 / 3
-        let iconImageView = UIImageView()
-        iconImageView.image = UIImage(named: "icon")
         iconImageView.frame = CGRect(x: view.frame.size.width / 2 - iconImageSize / 2, y: view.frame.size.height / 2 - iconImageSize / 2, width: iconImageSize, height: iconImageSize)
         iconImageView.layer.cornerRadius = iconImageSize / 2
         iconImageView.layer.masksToBounds = true

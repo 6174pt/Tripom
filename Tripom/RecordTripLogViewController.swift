@@ -438,7 +438,7 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
         let filter = PHPickerFilter.images
         configuration.filter = filter
         //            PHPickerで取得できる画像の数を(とりあえず)一枚に限定
-//        configuration.selectionLimit = 1
+        configuration.selectionLimit = 0
         
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
