@@ -47,10 +47,14 @@ class TripRequirementsViewController: UIViewController {
     var nowCostRequirementTripPoint: Int = 5
     var nowCurfewRequirementTripPoint: Int = 5
     
+    var resetRequirementsCount: Int = 0
+    
     let realm = try! Realm()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        resetRequirementsCount = 0
         
         self.navigationItem.hidesBackButton = true
         
@@ -272,8 +276,7 @@ class TripRequirementsViewController: UIViewController {
                 nowTripRequirement.nowTransportationRequirement = nowTransportationRequirement
                 nowTripRequirement.nowCostRequirement = nowCostRequirement
                 nowTripRequirement.nowCurfewRequirement = nowCurfewRequirement
-                //            リセット時の旅ポイント減算未実装(05/28時点)
-                nowTripRequirement.allTripPoint = nowDestinationRequirementTripPoint + nowTransportationRequirementTripPoint + nowTransportationRequirementTripPoint + nowCurfewRequirementTripPoint
+                nowTripRequirement.allTripPoint = nowDestinationRequirementTripPoint + nowTransportationRequirementTripPoint + nowTransportationRequirementTripPoint + nowCurfewRequirementTripPoint - resetRequirementsCount * 3
                 realm.add(nowTripRequirement)
             }
             //        '今の旅の旅条件'が空ではない時は'今の旅の旅条件'を空にして'提案された旅条件'を'今の旅の旅条件'に代入する
@@ -286,8 +289,7 @@ class TripRequirementsViewController: UIViewController {
                 nowTripRequirement.nowTransportationRequirement = nowTransportationRequirement
                 nowTripRequirement.nowCostRequirement = nowCostRequirement
                 nowTripRequirement.nowCurfewRequirement = nowCurfewRequirement
-                //            リセット時の旅ポイント減算未実装(05/28時点)
-                nowTripRequirement.allTripPoint = nowDestinationRequirementTripPoint + nowTransportationRequirementTripPoint + nowTransportationRequirementTripPoint + nowCurfewRequirementTripPoint
+                nowTripRequirement.allTripPoint = nowDestinationRequirementTripPoint + nowTransportationRequirementTripPoint + nowTransportationRequirementTripPoint + nowCurfewRequirementTripPoint - resetRequirementsCount * 3
                 realm.add(nowTripRequirement)
                     }
         }
@@ -308,6 +310,8 @@ class TripRequirementsViewController: UIViewController {
         })
         let cancelAction: UIAlertAction = UIAlertAction(title: "リセット", style: .default, handler: {
             (action: UIAlertAction) -> Void in
+            self.resetRequirementsCount += 1
+            print(self.resetRequirementsCount)
             self.randomizeTripRequirements()
             
 //            多分ここでスタート画面に戻る意味ない
