@@ -11,7 +11,8 @@ import PhotosUI
 
 //Realm：データの取得(NowTripRequirements,),データの追加(TripLog,TripPhotos)
 //旅の記録を編集する画面
-class RecordTripLogViewController: UIViewController, PHPickerViewControllerDelegate, UICollectionViewDataSource {
+class RecordTripLogViewController: UIViewController, PHPickerViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, CustomCollectionViewCellDelegate {
+    
     
 //    @IBOutlet var destinationRequirementLabel: UILabel!
 //    @IBOutlet var transportationRequirementLabel: UILabel!
@@ -387,19 +388,6 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
             tripLog.photoURLs = photoURLArray
             realm.add(tripLog)
             
-//            let nowAddTripLogs = realm.objects(TripLog.self)
-//            if let nowAddTripLog = nowAddTripLogs.last {
-//                print("追加したやつ")
-//                print(nowAddTripLog.destinationRequirement)
-//                print(nowAddTripLog.transportationRequirement)
-//                print(nowAddTripLog.costRequirement)
-//                print(nowAddTripLog.curfewRequirement)
-//                print(nowAddTripLog.tripComment)
-//                print(nowAddTripLog.photoURLs)
-//            } else {
-//                
-//            }
-            
         }
         
         if let tabBarController = self.tabBarController {
@@ -427,9 +415,22 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TripLogsPhotosCollectionViewCell", for: indexPath) as! TripLogsPhotosCollectionViewCell
                 cell.tripPhotosImageView.image = photoArray[indexPath.item - 1]
                 cell.layer.cornerRadius = 10
+                cell.delegate = self
                 return cell
             }
         }
+    
+    func didTapDeleteButton(in cell: TripLogsPhotosCollectionViewCell) {
+        print("didtapdelete")
+        if let indexPath = tripPhotoCollectionView.indexPath(for: cell) {
+            print("delete")
+            print(photoArray.count)
+            photoArray.remove(at: indexPath.item - 1)
+            photoURLArray.remove(at: indexPath.item - 1)
+            tripPhotoCollectionView.deleteItems(at: [indexPath])
+            print(photoArray.count)
+        }
+    }
     
     @objc func tappedAddPhotoButton() {
         //            PHPickerの表示
