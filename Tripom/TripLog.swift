@@ -10,6 +10,7 @@ import RealmSwift
 
 class TripLog: Object {
 //    旅条件
+//    @Persisted var tripDate:
     @Persisted var destinationRequirement: String = ""
     @Persisted var transportationRequirement: String = ""
     @Persisted var costRequirement: Int = 0

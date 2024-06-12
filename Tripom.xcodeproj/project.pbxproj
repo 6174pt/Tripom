@@ -26,7 +26,6 @@
 		558435332C05AB360092474A /* TripLogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558435322C05AB360092474A /* TripLogsViewController.swift */; };
 		558435362C05B0E80092474A /* TripLogsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558435342C05B0E80092474A /* TripLogsCollectionViewCell.swift */; };
 		558435372C05B0E80092474A /* TripLogsCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 558435352C05B0E80092474A /* TripLogsCollectionViewCell.xib */; };
-		5584D6FB2C184C540070E858 /* EditTripLogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5584D6FA2C184C540070E858 /* EditTripLogViewController.swift */; };
 		558711D92BF9D93A006DCB29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558711D82BF9D93A006DCB29 /* AppDelegate.swift */; };
 		558711DB2BF9D93A006DCB29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558711DA2BF9D93A006DCB29 /* SceneDelegate.swift */; };
 		558711DD2BF9D93A006DCB29 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558711DC2BF9D93A006DCB29 /* ViewController.swift */; };
@@ -80,7 +79,6 @@
 		558435322C05AB360092474A /* TripLogsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogsViewController.swift; sourceTree = "<group>"; };
 		558435342C05B0E80092474A /* TripLogsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripLogsCollectionViewCell.swift; sourceTree = "<group>"; };
 		558435352C05B0E80092474A /* TripLogsCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TripLogsCollectionViewCell.xib; sourceTree = "<group>"; };
-		5584D6FA2C184C540070E858 /* EditTripLogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTripLogViewController.swift; sourceTree = "<group>"; };
 		558711D52BF9D93A006DCB29 /* Tripom.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tripom.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		558711D82BF9D93A006DCB29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		558711DA2BF9D93A006DCB29 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -162,6 +160,7 @@
 				5584352A2C0586400092474A /* CurfewRequirements.swift */,
 				558435302C05950F0092474A /* NowTripRequirements.swift */,
 				5584352C2C0593990092474A /* TripLog.swift */,
+				55F503712C084AC100A8CE9A /* TripPhotos.swift */,
 				558435322C05AB360092474A /* TripLogsViewController.swift */,
 				558435342C05B0E80092474A /* TripLogsCollectionViewCell.swift */,
 				558435352C05B0E80092474A /* TripLogsCollectionViewCell.xib */,
@@ -171,10 +170,8 @@
 				5584352E2C0594070092474A /* RecordTripLogViewController.swift */,
 				55F5036D2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.swift */,
 				55F5036E2C06C19200A8CE9A /* TripLogsPhotosCollectionViewCell.xib */,
-				55F503712C084AC100A8CE9A /* TripPhotos.swift */,
 				55F503732C09242100A8CE9A /* AddPhotoCollectionViewCell.swift */,
 				55F503742C09242100A8CE9A /* AddPhotoCollectionViewCell.xib */,
-				5584D6FA2C184C540070E858 /* EditTripLogViewController.swift */,
 			);
 			path = Tripom;
 			sourceTree = "<group>";
@@ -268,7 +265,6 @@
 			files = (
 				558435272C0568190092474A /* TransportationRequirements.swift in Sources */,
 				55D256AA2BFD81E100F4D1EA /* FinishTripViewController.swift in Sources */,
-				5584D6FB2C184C540070E858 /* EditTripLogViewController.swift in Sources */,
 				55F503762C09242100A8CE9A /* AddPhotoCollectionViewCell.swift in Sources */,
 				559610C62C15F7BE00E62550 /* SettingViewController.swift in Sources */,
 				55EA8AC52C10C56A0023AFB0 /* TripLogPhotosCollectionViewCell.swift in Sources */,

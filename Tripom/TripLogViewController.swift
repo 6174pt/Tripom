@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 import PhotosUI
 
-class TripLogViewController: UIViewController, UICollectionViewDataSource, PHPickerViewControllerDelegate {
+class TripLogViewController: UIViewController, UICollectionViewDataSource, PHPickerViewControllerDelegate, UICollectionViewDelegate, TripLogPhotosCollectionViewCellDelegate {
     
     //    ScrollView
     let scrollView: UIScrollView = UIScrollView()
@@ -379,7 +379,8 @@ class TripLogViewController: UIViewController, UICollectionViewDataSource, PHPic
             let index = isEditingMode ? indexPath.item - 1 : indexPath.item
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TripLogPhotosCollectionViewCell", for: indexPath) as! TripLogPhotosCollectionViewCell
             cell.layer.cornerRadius = 10
-            
+            cell.delegate = self
+            cell.isEditingMode = isEditingMode
             if let photoURLString = photoURLArray[index] as String?,
                let fileURL = URL(string: photoURLString) {
                 let filePath = fileURL.path
@@ -401,6 +402,17 @@ class TripLogViewController: UIViewController, UICollectionViewDataSource, PHPic
             return cell
         }
         
+    }
+    
+    func didTapDeleteButton(in cell: TripLogPhotosCollectionViewCell) {
+        print("didtapdelete")
+        if let indexPath = tripPhotoCollectionView.indexPath(for: cell) {
+            print("delete")
+            try! realm.write {
+                photoURLArray.remove(at: indexPath.item - 1)
+            }
+            tripPhotoCollectionView.deleteItems(at: [indexPath])
+        }
     }
     
     @objc func tappedAddPhotoButton() {
