@@ -13,13 +13,6 @@ import PhotosUI
 //旅の記録を編集する画面
 class RecordTripLogViewController: UIViewController, PHPickerViewControllerDelegate, UICollectionViewDataSource, UICollectionViewDelegate, CustomCollectionViewCellDelegate {
     
-    
-//    @IBOutlet var destinationRequirementLabel: UILabel!
-//    @IBOutlet var transportationRequirementLabel: UILabel!
-//    @IBOutlet var costRequirementLabel: UILabel!
-//    @IBOutlet var curfewRequirementLabel: UILabel!
-//    @IBOutlet var tripCommentTextView: UITextView!
-    
     //    ScrollView
     let scrollView: UIScrollView = UIScrollView()
     let stackView: UIStackView = UIStackView()

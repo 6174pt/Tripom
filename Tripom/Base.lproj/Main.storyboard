@@ -202,6 +202,21 @@
             </objects>
             <point key="canvasLocation" x="2776.3358778625952" y="-704.22535211267609"/>
         </scene>
+        <!--Edit Trip Log View Controller-->
+        <scene sceneID="YbN-ED-U7i">
+            <objects>
+                <viewController storyboardIdentifier="EditTripLogViewController" id="1Al-cd-EA9" customClass="EditTripLogViewController" customModule="Tripom" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="40W-eO-aRn">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="SrP-be-SKr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LvZ-vT-UMc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3534" y="-704"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="QdR-Nc-z6h">
             <objects>
