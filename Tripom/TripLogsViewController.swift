@@ -64,9 +64,10 @@ class TripLogsViewController: UIViewController, UICollectionViewDataSource, UICo
         print(tripLog.destinationRequirement)
         cell.layer.cornerRadius = 10
         cell.backgroundColor = UIColor.systemGray6
+        let date = DateFormatter.localizedString(from: tripLog.createdDate, dateStyle: .short, timeStyle: .none)
         
 //        取得したデータを元にcellを編集する
-        cell.setupCell(tripDate: "2024/05/09", tripSpot: tripLog.destinationRequirement, imageName: tripLog.photoURLs.first ?? "")
+        cell.setupCell(tripDate: date, tripSpot: tripLog.destinationRequirement, imageName: tripLog.photoURLs.first ?? "")
         return cell
     }
     
