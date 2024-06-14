@@ -119,7 +119,7 @@ class OnATripViewController: UIViewController {
         destinationRequirementsView.addSubview(destinationLabel)
         
         //        目的地セクション-目的地条件
-        destinationRequirementLabel.frame=CGRect(x: requirementsViewHeight / 12, y: 0, width: sectionWidth - sectionHeight, height: sectionHeight)
+        destinationRequirementLabel.frame=CGRect(x: requirementsViewHeight / 12 + 20, y: 0, width: sectionWidth - sectionHeight, height: sectionHeight)
         destinationRequirementLabel.adjustsFontSizeToFitWidth = true
         destinationRequirementLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         destinationRequirementLabel.textAlignment = .center
@@ -144,7 +144,7 @@ class OnATripViewController: UIViewController {
         transportationRequirementsView.addSubview(transportationLabel)
         
         //        交通手段セクション-交通手段条件
-        transportationRequirementLabel.frame=CGRect(x: requirementsViewHeight / 12, y: 0, width: sectionWidth - sectionHeight, height: sectionHeight)
+        transportationRequirementLabel.frame=CGRect(x: requirementsViewHeight / 12 + 20, y: 0, width: sectionWidth - sectionHeight, height: sectionHeight)
         transportationRequirementLabel.adjustsFontSizeToFitWidth = true
         transportationRequirementLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         transportationRequirementLabel.textAlignment = .center
@@ -169,7 +169,7 @@ class OnATripViewController: UIViewController {
         costRequirementsView.addSubview(costLabel)
         
         //        費用セクション-費用条件
-        costRequirementLabel.frame=CGRect(x: requirementsViewHeight / 12, y: 0, width: sectionWidth - sectionHeight, height: sectionHeight)
+        costRequirementLabel.frame=CGRect(x: requirementsViewHeight / 12 + 20, y: 0, width: sectionWidth - sectionHeight, height: sectionHeight)
         costRequirementLabel.adjustsFontSizeToFitWidth = true
         costRequirementLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         costRequirementLabel.textAlignment = .center
@@ -194,7 +194,7 @@ class OnATripViewController: UIViewController {
         curfewRequirementsView.addSubview(curfewLabel)
         
         //        帰宅時間セクション-帰宅時間条件
-        curfewRequirementLabel.frame=CGRect(x: requirementsViewHeight / 12, y: 0, width: sectionWidth - sectionHeight, height: sectionHeight)
+        curfewRequirementLabel.frame=CGRect(x: requirementsViewHeight / 12 + 20, y: 0, width: sectionWidth - sectionHeight, height: sectionHeight)
         curfewRequirementLabel.adjustsFontSizeToFitWidth = true
         curfewRequirementLabel.font = UIFont.boldSystemFont(ofSize: 20.0)
         curfewRequirementLabel.textAlignment = .center

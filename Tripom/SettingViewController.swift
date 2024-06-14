@@ -120,7 +120,15 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
         //        userIDLabel.text = "\(userID)"
         userIDLabel.textColor = UIColor.gray
         profileView.addSubview(userIDLabel)
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+                view.addGestureRecognizer(tapGesture)
+        
     }
+    
+    @objc func dismissKeyboard() {
+            view.endEditing(true)
+        }
     
     @objc func saveButtonTapped() {
         print("Save button tapped")
