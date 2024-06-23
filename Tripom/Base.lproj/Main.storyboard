@@ -15,30 +15,10 @@
                     <view key="view" contentMode="scaleToFill" id="OD6-ku-znn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="caC-in-b6l">
-                                <rect key="frame" x="159" y="406" width="76" height="41"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="START"/>
-                                <connections>
-                                    <action selector="tappedStartButton" destination="5Ol-s1-T4O" eventType="touchUpInside" id="xP7-7i-hsh"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LRK-fw-JO3">
-                                <rect key="frame" x="76" y="362" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="0gb-5f-Baj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="旅を始める" id="7Np-Rt-Iw4"/>
-                    <connections>
-                        <outlet property="rouletteView" destination="LRK-fw-JO3" id="9yo-05-m7k"/>
-                        <outlet property="startButton" destination="caC-in-b6l" id="Eb9-1q-H7R"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9yR-xq-8Ra" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -222,11 +202,11 @@
             </objects>
             <point key="canvasLocation" x="136.64122137404578" y="3.5211267605633805"/>
         </scene>
-        <!--旅を開始-->
+        <!--旅を始める-->
         <scene sceneID="Hmm-nA-Ic9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Bc2-eN-1Dz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="旅を開始" image="figure.walk" catalog="system" id="NhX-9B-WAh"/>
+                    <tabBarItem key="tabBarItem" title="旅を始める" image="figure.walk" catalog="system" id="NhX-9B-WAh"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="80C-eJ-P9J">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>

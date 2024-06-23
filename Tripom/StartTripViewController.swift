@@ -9,22 +9,18 @@ import UIKit
 
 class StartTripViewController: UIViewController {
     
-    @IBOutlet var startButton: UIButton!
-    @IBOutlet var rouletteView: UIView!
+//    @IBOutlet var startButton: UIButton!
+//    @IBOutlet var rouletteView: UIView!
     let numberOfSections = 8
-    
+    let startButton: UIButton = UIButton()
+    let rouletteView: UIView = UIView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-//        旅の完了画面からの画面遷移に備えてTabBarを表示しておく
-        self.tabBarController?.tabBar.alpha = 1
-        self.tabBarController?.tabBar.isHidden = false
+        let textOnPathView = TextOnPathView(frame: CGRect(x: 0, y: self.view.frame.height / 2 - self.view.frame.width / 2, width: self.view.frame.width, height: self.view.frame.width))
+        textOnPathView.backgroundColor = .clear
+        self.view.addSubview(textOnPathView)
         
         //        スタートボタン
         startButton.configuration = nil
@@ -35,6 +31,10 @@ class StartTripViewController: UIViewController {
         startButton.setTitle("START", for: .normal)
         startButton.setTitleColor(UIColor.white, for: .normal)
         startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 40)
+        startButton.addAction(UIAction(handler: { _ in
+            self.tappedStartButton()
+        }), for: .touchUpInside)
+        self.view.addSubview(startButton)
         
         //        roulletView(ルーレットを表示するView)
         rouletteView.backgroundColor = UIColor.white
@@ -44,11 +44,32 @@ class StartTripViewController: UIViewController {
         setupRoulette()
         setupCenterCircle()
         rouletteView.isHidden = true
+        self.view.addSubview(rouletteView)
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+//        旅の完了画面からの画面遷移に備えてTabBarを表示しておく
+        self.tabBarController?.tabBar.alpha = 1
+        self.tabBarController?.tabBar.isHidden = false
+        
+        startButton.configuration = nil
+        let startButtonSize: CGFloat = self.view.frame.size.width * 2 / 3
+        startButton.backgroundColor = UIColor(red: 236 / 255, green: 207 / 255, blue: 101 / 255, alpha: 1)
+        startButton.frame = CGRect(x: (self.view.frame.size.width / 2) - startButtonSize / 2, y: (self.view.frame.size.height / 2) - startButtonSize / 2, width: startButtonSize, height: startButtonSize)
+        startButton.layer.cornerRadius = startButtonSize / 2
+        startButton.setTitle("START", for: .normal)
+        startButton.setTitleColor(UIColor.white, for: .normal)
+        startButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 40)
+        
+        rouletteView.isHidden = true
+        
     }
     
 //    rouletteViewのセットアップ
     func setupRoulette() {
-        
         let angleStep = 2 * CGFloat.pi / CGFloat(numberOfSections)
         let innerRadius: CGFloat = rouletteView.bounds.width / 2 * 0.8 // セクションビューのサイズ調整
         
@@ -120,8 +141,7 @@ class StartTripViewController: UIViewController {
         ])
     }
     
-    @IBAction func tappedStartButton() {
-        
+    @objc func tappedStartButton() {
         //        スタートボタンが押されたらタブバーを消してrouletteViewを表示する
         UIView.animate(withDuration: 1, animations: {
             self.tabBarController?.tabBar.alpha = 0
