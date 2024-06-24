@@ -66,7 +66,6 @@ class TripLogsPhotosCollectionViewCell: UICollectionViewCell {
         let deleteAction = UIAction(title: "削除", image: UIImage(systemName: "trash"), attributes: .destructive) { [weak self] action in
             guard let self = self else { return }
             self.delegate?.didTapDeleteButton(in: self)
-            print("delegate.delete")
         }
         let menu = UIMenu(title: "", children: [deleteAction])
         menuButton.menu = menu

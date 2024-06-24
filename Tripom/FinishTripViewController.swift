@@ -212,9 +212,7 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
     }
     
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        print("animationdidstop")
         if anim == shape.animation(forKey: "animation1") {
-            print("animation1didstop")
             //        レベルアップ後のレベルの表示
             profileMessageLabel.text = "Lv. \(tripLevel + 1)"
             profileMessageLabel.textAlignment = NSTextAlignment.center
@@ -255,7 +253,6 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
     
     func tappedRecordNowButton(){
 //        旅記録編集画面に遷移
-        print("tappedRecordNowButton")
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "RecordTripLogViewController") as! RecordTripLogViewController
         self.navigationController?.pushViewController(vc, animated: true)
         
@@ -263,9 +260,6 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
     
     func tappedRecordLaterButton() {
         //        '旅を始める'画面に遷移
-        print("tappedRecordLaterButton")
-        
-        print("add")
         let existingTripLogsData = realm.objects(TripLog.self)
         try! realm.write {
             //            旅記録のデータモデルに"今の旅の旅条件"を代入
@@ -282,7 +276,7 @@ class FinishTripViewController: UIViewController, CAAnimationDelegate {
             
             let nowAddTripLogs = realm.objects(TripLog.self)
             if let nowAddTripLog = nowAddTripLogs.last {
-                print("追加したやつ")
+                print("追加したもの")
                 print(nowAddTripLog.destinationRequirement)
                 print(nowAddTripLog.transportationRequirement)
                 print(nowAddTripLog.costRequirement)

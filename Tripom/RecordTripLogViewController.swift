@@ -366,7 +366,6 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
     
     //    旅記録を保存するAction
     func tappedSaveButton(){
-        print("add")
         let existingTripLogsData = realm.objects(TripLog.self)
         try! realm.write {
             //            旅記録のデータモデルに"今の旅の旅条件"を代入
@@ -414,9 +413,7 @@ class RecordTripLogViewController: UIViewController, PHPickerViewControllerDeleg
         }
     
     func didTapDeleteButton(in cell: TripLogsPhotosCollectionViewCell) {
-        print("didtapdelete")
         if let indexPath = tripPhotoCollectionView.indexPath(for: cell) {
-            print("delete")
             print(photoArray.count)
             photoArray.remove(at: indexPath.item - 1)
             photoURLArray.remove(at: indexPath.item - 1)

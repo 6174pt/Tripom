@@ -405,9 +405,7 @@ class TripLogViewController: UIViewController, UICollectionViewDataSource, PHPic
     }
     
     func didTapDeleteButton(in cell: TripLogPhotosCollectionViewCell) {
-        print("didtapdelete")
         if let indexPath = tripPhotoCollectionView.indexPath(for: cell) {
-            print("delete")
             try! realm.write {
                 photoURLArray.remove(at: indexPath.item - 1)
             }

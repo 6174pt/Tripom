@@ -8,6 +8,8 @@ class TabBarController: UITabBarController {
     
         // 自分の持っているViewControllers(ViewControllerの配列)の1番目を選択する。
         self.selectedViewController = self.viewControllers![1]
+        UITabBar.appearance().tintColor = UIColor(red: 236 / 255, green: 207 / 255, blue: 101 / 255, alpha: 1)
+
     }
 
     override func didReceiveMemoryWarning() {

@@ -150,8 +150,6 @@ class ProfileViewController: UIViewController {
 //        ボタンのサイズ
         let buttonWidth: CGFloat = self.view.frame.size.width * 3 / 4
         let buttonHeight: CGFloat = buttonWidth * 1 / 5
-        print(self.view.frame.size.width)
-        print(self.view.frame.size.height)
         
 //        ”共有”ボタン
         shareProfileButton.backgroundColor = UIColor.black
@@ -194,14 +192,12 @@ class ProfileViewController: UIViewController {
     }
     
     func tappedShareProfileButton() {
-        print("tappedShareProfileButton")
         let image = profileView.image(withRate: rate, iconImage: UIImage(named: "icon")!, appName: "Tripom")
         let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         self.present(activityVC, animated: true, completion: nil)
     }
     
     func tappedSettingButton() {
-        print("tappedSettingButton")
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
         self.navigationController?.pushViewController(vc, animated: true)
         
@@ -215,7 +211,6 @@ extension UIView {
                 return renderer.image { ctx in
                     // 既存の描画内容をキャプチャ
                     layer.render(in: ctx.cgContext)
-                    print(rate)
                     // ここに円ゲージを描画
                     let iconImageSize: CGFloat = bounds.size.width * 1 / 3
                     let circlePath = UIBezierPath(arcCenter: CGPoint(x: bounds.size.width / 2, y: bounds.size.width / 3), radius: iconImageSize / 2 + 10, startAngle: -(.pi/2), endAngle: CGFloat(rate) * 2 * .pi - (.pi/2), clockwise: true)

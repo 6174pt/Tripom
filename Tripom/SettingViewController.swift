@@ -131,7 +131,6 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
         }
     
     @objc func saveButtonTapped() {
-        print("Save button tapped")
         guard let newUsername = userNameTextField.text else { return }
         do {
                 let existingUserData = realm.objects(User.self).first
@@ -158,7 +157,6 @@ class SettingViewController: UIViewController, PHPickerViewControllerDelegate {
     }
     
     func showAlert(title: String, message: String) {
-        print("aleart")
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
         alertController.addAction(okAction)

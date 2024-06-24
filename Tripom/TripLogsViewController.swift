@@ -43,8 +43,6 @@ class TripLogsViewController: UIViewController, UICollectionViewDataSource, UICo
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 10
         layout.itemSize = CGSize(width: (self.view.frame.width - 30) / 2, height:(self.view.frame.width - 30 ) * 1.5 / 2 )
-        print((self.view.frame.width - 30) / 2)
-        print((self.view.frame.width - 30 ) * 1.5 / 2)
         layout.sectionInset = UIEdgeInsets(top: 20,left: 10,bottom: 0,right: 10)
         collectionView.collectionViewLayout = layout
         
@@ -61,7 +59,6 @@ class TripLogsViewController: UIViewController, UICollectionViewDataSource, UICo
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TripLogsCollectionViewCell", for: indexPath) as! TripLogsCollectionViewCell
 //        cellのデータとして、データモデルTripLogsのindexPath.row番目のデータを取得する
         let tripLog: TripLog = tripLogs[indexPath.row]
-        print(tripLog.destinationRequirement)
         cell.layer.cornerRadius = 10
         cell.backgroundColor = UIColor.systemGray6
         let date = DateFormatter.localizedString(from: tripLog.createdDate, dateStyle: .short, timeStyle: .none)
@@ -73,7 +70,6 @@ class TripLogsViewController: UIViewController, UICollectionViewDataSource, UICo
     
     // セルがタップされたとき
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print("tappedcell")
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "TripLogViewController") as! TripLogViewController
         vc.index = indexPath.row
         vc.tripLogs = tripLogs 

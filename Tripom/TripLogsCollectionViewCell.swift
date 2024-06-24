@@ -26,7 +26,6 @@ class TripLogsCollectionViewCell: UICollectionViewCell {
         }
     
     func setupCell(tripDate: String, tripSpot: String, imageName: String) {
-        print("cell")
         tripDateLabel.text = tripDate
         tripSpotLabel.text = tripSpot
         tripDateLabel.frame = CGRect(x: 10, y: Int(self.frame.size.height) - 60, width: Int(self.frame.size.width) - 10, height: 20)

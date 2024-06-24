@@ -18,13 +18,16 @@ class StartTripViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let startButtonSize: CGFloat = self.view.frame.size.width * 2 / 3
+        
         let textOnPathView = TextOnPathView(frame: CGRect(x: 0, y: self.view.frame.height / 2 - self.view.frame.width / 2, width: self.view.frame.width, height: self.view.frame.width))
         textOnPathView.backgroundColor = .clear
+        textOnPathView.diameter = startButtonSize + 40
         self.view.addSubview(textOnPathView)
         
         //        スタートボタン
         startButton.configuration = nil
-        let startButtonSize: CGFloat = self.view.frame.size.width * 2 / 3
+        
         startButton.backgroundColor = UIColor(red: 236 / 255, green: 207 / 255, blue: 101 / 255, alpha: 1)
         startButton.frame = CGRect(x: (self.view.frame.size.width / 2) - startButtonSize / 2, y: (self.view.frame.size.height / 2) - startButtonSize / 2, width: startButtonSize, height: startButtonSize)
         startButton.layer.cornerRadius = startButtonSize / 2
