@@ -64,8 +64,6 @@ class TextOnPathView: UIView {
         let characters = Array(text)
         
         for (index, letter) in characters.enumerated() {
-            print(index)
-            print(text.count / 2)
             let startAngle = textWidth * (Double(text.count) - 1) / 2.0
             let angle = (-startAngle + textWidth * Double(index)) * .pi / 180 - (.pi / 2)
             let x = center.x + radius * cos(CGFloat(angle))
